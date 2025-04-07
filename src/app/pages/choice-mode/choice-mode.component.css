@@ -1,0 +1,225 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f9;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 24px;
+  }
+  
+  .question {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  
+  .options {
+    margin-bottom: 20px;
+  }
+  
+  .option {
+    display: block;
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #45a049;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .stack-button-container {
+    display: flex; /* Flexbox to align items horizontally */
+    justify-content: space-between; /* Spread items evenly across the container */
+    align-items: center; /* Vertically center items */
+    width: 100%; /* Make the container take up all available space */
+  }
+  
+  .stack-button {
+    width: 100%;
+    background-color: #3498db;
+    color: white;
+    border-radius: 15px;
+    padding: 20px 40px;
+    font-size: 20px;
+    height: 60px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+  }
+
+  button[type="button"] {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #c0392b;
+  }
+  
+  button:not([type="button"]) {
+    background-color: #618771;
+    color: white;
+  }
+  
+  button:not([type="button"]):hover {
+    background-color: #7dd6a2;
+  }
+
+ /* 按钮样式 */
+.options button {
+  padding: 12px 20px;
+  margin: 8px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* 正确答案的按钮 */
+.options button.correct {
+  background-color: #4caf50; /* 绿色 */
+  color: white;
+  border: 1px solid #388e3c;
+}
+
+/* 错误答案的按钮 */
+.options button.wrong {
+  background-color: #f44336; /* 红色 */
+  color: white;
+  border: 1px solid #d32f2f;
+}
+
+/* 禁用状态下的按钮 */
+.options button[disabled] {
+  background-color: #e0e0e0; /* 灰色 */
+  color: black;
+}
+
+  
+.score-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  z-index: 1000; /* 确保它浮动在其他内容上 */
+  width: 300px;
+  max-width: 80%;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  font-size: 24px;
+  color: #4CAF50;
+}
+
+p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.close-button {
+  position: absolute; 
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background-color: #cbf4fa; 
+  color: white;
+  border: none;
+  border-radius: 50%; 
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.close-button:hover {
+  background-color: #b7cacd; 
+}
+
+.close {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}

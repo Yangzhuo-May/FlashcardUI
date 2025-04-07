@@ -1,0 +1,93 @@
+<div class="main-container">
+  <!-- Stack Section Container (Button + Scrollable List) -->
+  <div class="stack-section">
+    <!-- New Stack Button -->
+    <div class="add-stack-button-container">
+      <button class="add-stack-button" (click)="showForm = true">
+        <span class="add-sign">+</span>
+        Add New Card
+      </button>
+    </div>
+  
+    <!-- Stack List (now part of the scrollable section) -->
+    <div class="stack-list-container">
+      <table class="stack-table">
+        <thead>
+          <tr>
+            <th>Cards</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let card of cards" class="stack-line">
+            <td>
+              <!-- Card Button -->
+              <div class="stack-button-container">
+                <button>
+                  <span class="stack-name">{{ card.question }}</span>
+                </button>
+
+                <!-- Edit and Delete Buttons (initially hidden) -->
+                <div class="action-buttons">
+                  <button class="edit-button" (click)="onEditCardInit(card)">
+                    ✎
+                  </button>
+                  <button class="delete-button" (click)="onClickDeleteCard(card.cardId)">
+                    🗑️
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div *ngIf="showForm">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label for="question">问题：</label>
+      <input 
+        id="question" 
+        type="text" 
+        formControlName="question"
+        required 
+      />
+    
+      <div formArrayName="answers">
+        <div *ngFor="let answer of answers.controls; let i = index; trackBy: trackByIndex">
+          <label for="answer{{i}}">答案 {{ i + 1 }}：</label>
+          <input 
+            id="answer{{i}}" 
+            type="text" 
+            [formControlName]="i"
+            required 
+          />
+        </div>
+      </div>
+    
+      <label for="correctAnswer">正确答案：</label>
+      <input 
+        id="correctAnswer" 
+        type="text" 
+        formControlName="correctAnswer" 
+        required 
+      />
+    
+      <button type="submit">{{ editingCard ? '保存修改' : '添加卡片' }}</button>
+      <button type="button" (click)="cancelEdit()">取消</button>
+      <!-- <button *ngIf="editingCard" type="button" (click)="cancelEdit()">取消编辑</button> -->
+    </form>
+  </div>
+  
+  
+<div>
+  <button (click)="onBackClick()">
+    Back to home
+  </button> 
+</div>
+
+<div>
+  <button (click)="onChoiceModeClick()">
+    To choice mode
+  </button> 
+</div>
