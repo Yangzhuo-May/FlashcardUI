@@ -1,1 +1,63 @@
-<p>stack-list works!</p>
+<div class="main-container">
+    <!-- Stack Section Container (Button + Scrollable List) -->
+    <div class="stack-section">
+      <!-- New Stack Button -->
+      <div class="add-stack-button-container">
+        <button class="add-stack-button" (click)="isAddFormVisible = true">
+          <span class="add-sign">+</span>
+          Add New Stack
+        </button>
+      </div>
+  
+      <!-- Stack List -->
+      <div class="stack-list-container">
+        <table class="stack-table">
+          <thead>
+            <tr>
+              <th>Stacks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let stack of stacks" class="stack-line">
+              <td>
+                <!-- Stack Button -->
+                <div class="card-set-button" *ngFor="let stack of stacks" (click)="goToCardList(stack.stackId)">          
+                    <span class="stack-name">{{ stack.stackName }}</span>
+                  
+                  <div class="action-icons">
+                    <i class="material-icons edit-icon" (click)="onEditStackInit(stack.stackId)">✎</i>
+                    <i class="material-icons delete-icon" (click)="onDeleteStackClick(stack)">🗑️</i>
+                  </div>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- Add Stack Form -->
+    <div *ngIf="isAddFormVisible" class="form-container">
+      <h3>Please enter new Stack name</h3>
+      <input type="text" [(ngModel)]="newStackName" placeholder="Entre Stack name">
+      <button (click)="onNewStackClick()">
+        Confirm
+    </button>
+      <button type="button" (click)="isAddFormVisible = false">
+        Cancel
+    </button>
+    </div>
+    
+    <!-- Edit Stack Form -->
+    <div *ngIf="isEditFormVisible" class="form-container">
+      <h3>Please enter new Stack name</h3>
+      <input type="text" [(ngModel)]="editedStackName" placeholder="Entre Stack name">
+      <button (click)="onEditStackClick(editedStackName, editingStackId)">
+        Confirm
+    </button>
+      <button type="button" (click)="isEditFormVisible = false">
+        Cancel
+    </button>
+    </div>
+  </div>

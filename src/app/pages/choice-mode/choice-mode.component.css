@@ -34,50 +34,12 @@ body {
     font-size: 16px;
   }
   
-  .submit-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .submit-btn:hover {
-    background-color: #45a049;
-  }
-  
   button {
     margin-top: 10px;
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-  }
-
-  .stack-button-container {
-    display: flex; /* Flexbox to align items horizontally */
-    justify-content: space-between; /* Spread items evenly across the container */
-    align-items: center; /* Vertically center items */
-    width: 100%; /* Make the container take up all available space */
-  }
-  
-  .stack-button {
-    width: 100%;
-    background-color: #3498db;
-    color: white;
-    border-radius: 15px;
-    padding: 20px 40px;
-    font-size: 20px;
-    height: 60px;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.3s;
   }
 
   button[type="button"] {
@@ -99,7 +61,6 @@ body {
     background-color: #7dd6a2;
   }
 
- /* 按钮样式 */
 .options button {
   padding: 12px 20px;
   margin: 8px;
@@ -110,26 +71,21 @@ body {
   transition: background-color 0.3s ease;
 }
 
-/* 正确答案的按钮 */
 .options button.correct {
-  background-color: #4caf50; /* 绿色 */
+  background-color: #4caf50; 
   color: white;
   border: 1px solid #388e3c;
 }
 
-/* 错误答案的按钮 */
 .options button.wrong {
-  background-color: #f44336; /* 红色 */
+  background-color: #f44336; 
   color: white;
   border: 1px solid #d32f2f;
 }
 
-/* 禁用状态下的按钮 */
 .options button[disabled] {
-  background-color: #e0e0e0; /* 灰色 */
-  color: black;
+  cursor: not-allowed;  
 }
-
   
 .score-card {
   position: fixed;
@@ -141,7 +97,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
   text-align: center;
-  z-index: 1000; /* 确保它浮动在其他内容上 */
+  z-index: 1000; 
   width: 300px;
   max-width: 80%;
 }
@@ -160,20 +116,6 @@ h2 {
 p {
   font-size: 18px;
   margin: 10px 0;
-}
-
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #45a049;
 }
 
 .close-button {

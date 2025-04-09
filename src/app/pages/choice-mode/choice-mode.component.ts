@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { CardServiceService } from '../../services/card-service.service';
-import { Card } from '../../../models/card';
 import { CardDto } from '../../../models/cardDto';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { Location } from '@angular/common';
 import { BackButtonComponent } from '../../shared/back-button/back-button.component';
 
 @Component({
@@ -15,7 +11,7 @@ import { BackButtonComponent } from '../../shared/back-button/back-button.compon
   templateUrl: './choice-mode.component.html',
   styleUrl: './choice-mode.component.css'
 })
-export class ChoiceModeComponent {
+export class ChoiceModeComponent implements OnInit {
   cards: any = [];
   currentIndex: number = 0;
   currentCard: CardDto = { 
@@ -28,39 +24,37 @@ export class ChoiceModeComponent {
   showScore: boolean = false;
   selectedAnswer: string = '';
   isCorrectAnswer: boolean = false;
+  answerChecked: boolean = false;
+
+  questionState: 'notAnswered' | 'answered' = 'notAnswered';
 
   constructor(
-    private location: Location,
     private cardService: CardServiceService,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.fetchCards();
-    this.updatePage();
+    this.loadNextCard();
   }
 
   fetchCards(): void {
     this.cardService.getData().subscribe({
       next: (res) => {
         this.cards = res.cards;
-        console.log('cards:', this.cards);
       },
       error: (err) => this.handleError(err, 'Failed, try again later.')
     })
   }
 
-
-  updatePage() {
+  loadNextCard() {
     if (this.currentIndex == this.cards.length) {
       this.displayScore();
       return;
     }
-
+    
     this.answerChecked = false;
 
     const currentCardDb = this.cards[this.currentIndex];
-    console.log('cards is ', currentCardDb);
     this.currentIndex++;
     this.currentCard = {
       question: currentCardDb.question,
@@ -69,28 +63,32 @@ export class ChoiceModeComponent {
     }
   }
 
-  displayScore(): void {
-    this.showScore = true;
-  }
-
-  answerChecked = false;
-  currenClass: string = '';
-
   checkAnswer(answer: string) {
     this.selectedAnswer = answer;
     this.answerChecked = true;
 
-    if (this.selectedAnswer == this.currentCard.correctAnswer) {
+    if (this.answerChecked && this.selectedAnswer == this.currentCard.correctAnswer) {
       this.score++;
+    } 
+  }
+
+  displayCorrectAnswer(option: string): string {
+    if (!this.answerChecked) {
+      return 'default';  
     }
+    return option === this.currentCard.correctAnswer ? 'correct' : 'wrong';
+  }
+
+  onCloseScore(): void {
+    this.showScore = false;
+  }
+
+  displayScore(): void {
+    this.showScore = true;
   }
 
   handleError(error: any, customMessage: string) {
     console.error(customMessage, error);
     alert(customMessage);
-  }
-
-  goBack(): void {
-    this.showScore = false;
   }
 }

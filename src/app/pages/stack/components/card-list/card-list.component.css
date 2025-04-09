@@ -4,7 +4,7 @@
   }
   
   .stack-section {
-    width: 400px;  /* Stack section width */
+    width: 400px;  
     background-color: #f9f9f9;
     border: 2px solid #d3d3d3;
     border-radius: 8px;
@@ -59,10 +59,10 @@
   }
   
   .stack-button-container {
-    display: flex; /* Flexbox to align items horizontally */
-    justify-content: space-between; /* Spread items evenly across the container */
-    align-items: center; /* Vertically center items */
-    width: 100%; /* Make the container take up all available space */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%; 
   }
   
   .stack-button {
@@ -92,9 +92,9 @@
   }
   
   .action-buttons {
-    display: flex; /* Use flexbox to align buttons horizontally */
-    justify-content: flex-end; /* Align the action buttons to the right */
-    gap: 10px; /* Add some space between the buttons */
+    display: flex; 
+    justify-content: flex-end; 
+    gap: 10px; 
   }
   
   .stack-button-container:hover .action-buttons {
@@ -155,5 +155,45 @@
   
   button:not([type="button"]):hover {
     background-color: #27ae60;
+  }
+  
+  .card-set-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 48px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: #4fe654;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .card-set-button:hover {
+    background-color: #4CAF50;
+  }
+  
+  .stack-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    flex-grow: 1;
+  }
+  
+  .action-icons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .material-icons {
+    font-size: 20px;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .material-icons:hover {
+    color: #000;
   }
   

@@ -21,19 +21,12 @@
           <tr *ngFor="let card of cards" class="stack-line">
             <td>
               <!-- Card Button -->
-              <div class="stack-button-container">
-                <button>
-                  <span class="stack-name">{{ card.question }}</span>
-                </button>
-
-                <!-- Edit and Delete Buttons (initially hidden) -->
-                <div class="action-buttons">
-                  <button class="edit-button" (click)="onEditCardInit(card)">
-                    ✎
-                  </button>
-                  <button class="delete-button" (click)="onClickDeleteCard(card.cardId)">
-                    🗑️
-                  </button>
+              <div class="card-set-button">              
+                <span class="stack-name">{{ card.question }}</span>            
+                <!-- Edit and Delete Buttons -->
+                <div class="action-icons">
+                  <i class="material-icons edit-icon" (click)="onEditCardInit(card)">✎</i>
+                  <i class="material-icons delete-icon" (click)="onClickDeleteCard(card.cardId)">🗑️</i>
                 </div>
               </div>
             </td>
@@ -45,7 +38,7 @@
   
   <div *ngIf="showForm">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <label for="question">问题：</label>
+      <label for="question">Question：</label>
       <input 
         id="question" 
         type="text" 
@@ -55,7 +48,7 @@
     
       <div formArrayName="answers">
         <div *ngFor="let answer of answers.controls; let i = index; trackBy: trackByIndex">
-          <label for="answer{{i}}">答案 {{ i + 1 }}：</label>
+          <label for="answer{{i}}">Answer {{ i + 1 }}：</label>
           <input 
             id="answer{{i}}" 
             type="text" 
@@ -65,7 +58,7 @@
         </div>
       </div>
     
-      <label for="correctAnswer">正确答案：</label>
+      <label for="correctAnswer">Correct Answer</label>
       <input 
         id="correctAnswer" 
         type="text" 
@@ -73,21 +66,7 @@
         required 
       />
     
-      <button type="submit">{{ editingCard ? '保存修改' : '添加卡片' }}</button>
-      <button type="button" (click)="cancelEdit()">取消</button>
-      <!-- <button *ngIf="editingCard" type="button" (click)="cancelEdit()">取消编辑</button> -->
+      <button type="submit">{{ editingCard ? 'Save Changes' : 'Add New Card' }}</button>
+      <button type="button" (click)="closeForm()">Cancel</button>
     </form>
   </div>
-  
-  
-<div>
-  <button (click)="onBackClick()">
-    Back to home
-  </button> 
-</div>
-
-<div>
-  <button (click)="onChoiceModeClick()">
-    To choice mode
-  </button> 
-</div>
