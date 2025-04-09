@@ -1,19 +1,11 @@
 button {
     margin-top: 10px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 32px;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  button[type="button"] {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-  }
-  
-  button[type="button"]:hover {
-    background-color: #c0392b;
+    font-family: 'WinkySans'
   }
   
   button:not([type="button"]) {

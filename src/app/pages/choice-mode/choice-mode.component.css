@@ -1,8 +1,8 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
     background-color: #f4f4f9;
+    font-family: 'WinkySans'
   }
   
   .container {
@@ -50,15 +50,18 @@ body {
   
   button[type="button"]:hover {
     background-color: #c0392b;
+    border: none;
   }
   
   button:not([type="button"]) {
-    background-color: #618771;
+    background-color: #2ecc71;
     color: white;
+    border: none;
   }
   
   button:not([type="button"]):hover {
-    background-color: #7dd6a2;
+    background-color: #27ae60;
+    border: none;
   }
 
 .options button {
@@ -164,4 +167,11 @@ p {
 }
 .close:after {
   transform: rotate(-45deg);
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-self: center; 
 }

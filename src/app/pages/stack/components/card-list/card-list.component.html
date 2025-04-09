@@ -1,42 +1,21 @@
 <div class="main-container">
-  <!-- Stack Section Container (Button + Scrollable List) -->
   <div class="stack-section">
-    <!-- New Stack Button -->
-    <div class="add-stack-button-container">
-      <button class="add-stack-button" (click)="showForm = true">
-        <span class="add-sign">+</span>
-        Add New Card
-      </button>
-    </div>
-  
-    <!-- Stack List (now part of the scrollable section) -->
+    <button class="stack-button add-stack-button" (click)="showForm = true">
+      <span class="add-sign">+ Add New Card</span>
+    </button>
+         
     <div class="stack-list-container">
-      <table class="stack-table">
-        <thead>
-          <tr>
-            <th>Cards</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let card of cards" class="stack-line">
-            <td>
-              <!-- Card Button -->
-              <div class="card-set-button">              
-                <span class="stack-name">{{ card.question }}</span>            
-                <!-- Edit and Delete Buttons -->
-                <div class="action-icons">
-                  <i class="material-icons edit-icon" (click)="onEditCardInit(card)">✎</i>
-                  <i class="material-icons delete-icon" (click)="onClickDeleteCard(card.cardId)">🗑️</i>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="card-set-button" *ngFor="let card of cards">          
+        <span class="stack-name">{{ card.question }}</span>       
+        <div class="action-icons">
+          <i class="material-icons edit-icon" (click)="onEditCardInit(card); $event.stopPropagation()">edit</i>
+          <i class="material-icons delete-icon" (click)="onClickDeleteCard(card.cardId); $event.stopPropagation()">delete</i>
+        </div>
+      </div>
     </div>
   </div>
   
-  <div *ngIf="showForm">
+  <div *ngIf="showForm" class="form-container">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <label for="question">Question：</label>
       <input 

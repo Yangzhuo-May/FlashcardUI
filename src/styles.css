@@ -1,22 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
-/* 全局重置边距和内边距 */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-  
-  /* body 元素没有额外的边距和内边距 */
+
   body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif; /* 你可以选择自己喜欢的字体 */
+    font-family: 'WinkySans', Arial, sans-serif; 
   }
   
-  /* 可选: 调整标题 h1 的样式 */
   h1 {
     margin: 0;
     padding: 0;
-    /* 如果需要，可以添加更多的样式 */
   }
+
+  @font-face {
+    font-family: 'WinkySans';
+    src: url('assets/fonts/Winky_Sans/WinkySans-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
   
