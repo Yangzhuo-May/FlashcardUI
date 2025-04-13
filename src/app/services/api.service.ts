@@ -9,7 +9,7 @@ import { Card
 })
 export class ApiService {
 
-  private baseUrl = 'http://localhost:5251/api'; 
+  private baseUrl = 'https://flashcardsapi.azurewebsites.net/api'; 
   constructor(private http: HttpClient) {}
 
   getStacks(): Observable<any> {
