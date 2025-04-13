@@ -1,53 +1,45 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Answer Input Mode</title>
-</head>
-<body>
+<div class="container">
+  <h1>Answer Input</h1>
 
-  <div class="container">
-    <h1>Answer Input</h1>
+  <!-- Question Section -->
+  <p>{{ currentCard?.question }}</p>
 
-    <!-- Question Section -->
-      <p>{{ currentCard?.question }}</p>
-    
-      <form [formGroup]="form">
-          <div class="options">
-            <input 
-                id="userInput" 
-                type="text" 
-                formControlName="userAnswer" 
-                [ngClass]="{
-                  'correct': isCorrectAnswer === true, 
-                  'incorrect': isCorrectAnswer === false
-                }"
-                (keydown.enter)="checkAnswer()"
-                (focus)="onInputFocus()"
-                placeholder="Please enter your answer"
-            />
-          </div>
-      </form>
-
-    <button 
-    (click)="loadNextCard()"
-    [disabled]="!inputTouched"
-    >
-      NEXT
-    </button>
-  </div>
-
-  <div *ngIf="showScore" class="score-card">
-    <button class="close-button" (click)="onCloseScore()">
-      X
-    </button>
-    <div class="card-content">
-      <h2>Study Completed!</h2>
-      <p>Your score is: {{ score }}</p>
+  <form [formGroup]="form">
+    <div class="options">
+      <input 
+          id="userInput" 
+          type="text" 
+          formControlName="userAnswer" 
+          [ngClass]="{
+            'correct': isCorrectAnswer === true, 
+            'incorrect': isCorrectAnswer === false
+          }"
+          (keydown.enter)="checkAnswer()"
+          (focus)="onInputFocus()"
+          placeholder="Please enter your answer"
+      />
     </div>
-  </div>
+  </form>
 
+  <button 
+  (click)="loadNextCard()"
+  [disabled]="!inputTouched"
+  >
+    NEXT
+  </button>
+</div>
+
+<div class="button-group">
   <app-back-button></app-back-button>
+</div>
 
-</body>
-</html>
+<div *ngIf="showScore" class="score-card">
+  <button class="close-button" (click)="onCloseScore()">
+    X
+  </button>
+  <div class="card-content">
+    <h2>Study Completed!</h2>
+    <p>Your score is: {{ score }}</p>
+  </div>
+</div>
+

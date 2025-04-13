@@ -1,13 +1,9 @@
-body {
-    margin: 0;
-    padding: 20px;
-    background-color: #f4f4f9;
-    font-family: 'WinkySans'
-  }
-  
   .container {
+    display: grid;
+    place-items: center;
+
     max-width: 600px;
-    margin: 0 auto;
+    margin: 50px auto 0;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -170,7 +166,8 @@ p {
 }
 
 .button-group {
-  display: flex;
+  display: grid;
+  place-items: center;
   flex-direction: column;
   gap: 50px;
   align-self: center; 

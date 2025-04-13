@@ -142,3 +142,11 @@ button {
   .close:after {
     transform: rotate(-45deg);
   }
+
+  .button-group {
+    display: grid;
+    place-items: center;
+    flex-direction: column;
+    gap: 50px;
+    align-self: center; 
+  }

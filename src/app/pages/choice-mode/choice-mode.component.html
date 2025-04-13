@@ -1,49 +1,40 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multiple Choice Mode</title>
-  <link rel="stylesheet" >
-</head>
-<body>
+<div class="container">
+  <h1>Multiple Choice</h1>
 
-  <div class="container">
-    <h1>Multiple Choice</h1>
-
-    <!-- Question Section -->
-    <div class="question">
-      <p>{{ currentCard?.question }}</p>
-    
-      <div class="options">
-        <button
-          *ngFor="let answer of currentCard?.answers; let i = index"
-          (click)="checkAnswer(answer)"
-          [ngClass]="displayCorrectAnswer(answer)"
-          [disabled]="answerChecked"
-        >
-          {{ answer }}
-        </button>
-      </div>
-    </div>
-    <button (click)="loadNextCard()">
-      NEXT
-    </button>
-  </div>
-
-
-  <div *ngIf="showScore" class="score-card">
-    <button class="close-button" (click)="onCloseScore()">
-      X
-    </button>
-    <div class="card-content">
-      <h2>Study Completed!</h2>
-      <p>Your score is:{{ score }}</p>
+  <!-- Question Section -->
+  <div class="question">
+    <p>{{ currentCard?.question }}</p>
+  
+    <div class="options">
+      <button
+        *ngFor="let answer of currentCard?.answers; let i = index"
+        (click)="checkAnswer(answer)"
+        [ngClass]="displayCorrectAnswer(answer)"
+        [disabled]="answerChecked"
+      >
+        {{ answer }}
+      </button>
     </div>
   </div>
+  <button (click)="loadNextCard()">
+    NEXT
+  </button>
+</div>
 
-  <div class="button-group">
-    <app-back-button></app-back-button>
+<div class="button-group">
+  <app-back-button></app-back-button>
+</div>
+
+<div *ngIf="showScore" class="score-card">
+  <button class="close-button" (click)="onCloseScore()">
+    X
+  </button>
+  <div class="card-content">
+    <h2>Study Completed!</h2>
+    <p>Your score is:{{ score }}</p>
   </div>
+</div>
 
-</body>
-</html>
+
+
+
