@@ -3,7 +3,6 @@ import { CardServiceService } from '../../../../services/card-service.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators} from '@angular/forms';
-import { Subscriber } from 'rxjs';
 import { Card } from '../../../../../models/card';
 
 @Component({

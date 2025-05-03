@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from './api.service';
 import { catchError, Observable, of, BehaviorSubject } from 'rxjs';
 import { Card } from '../../models/card';
+import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardServiceService {
 
-  constructor(private apiService: ApiService) { }
+  private baseUrl = environment.apiUrl;
+  constructor(private http: HttpClient) {}
 
   private dataList = new BehaviorSubject<{ stackId: number, cards: any[] }>({ stackId: 0, cards: [] });
   selectedCards$ = this.dataList.asObservable();
@@ -23,24 +25,36 @@ export class CardServiceService {
   }
 
   getAllCards(): Observable<any> {
-    return this.apiService.getAllCards();
+    return this.http.get(`${this.baseUrl}/card`);
   }
 
   getCardsByStack(stackId: number | null = null): Observable<any> {
-    return this.apiService.getCardsByStack(stackId);  
+    return this.http.get(`${this.baseUrl}/card/${stackId}`); 
   }
 
   createCard(card: Card): Observable<any> {
-    return this.apiService.createCard(card);
+    const newCard = {
+      question: card.question, 
+      answers: card.answers, 
+      correctAnswer: card.correctAnswer, 
+      stackId: card.stackId
+    };
+
+    return this.http.post(`${this.baseUrl}/card`, newCard);
   }
-    
-  // Update a post
+
   updateCard(cardUpdated: Card): Observable<any> {
-    return this.apiService.updateCard(cardUpdated);
+    const newCard = {
+      question: cardUpdated.question, 
+      answers: cardUpdated.answers, 
+      correctAnswer: cardUpdated.correctAnswer, 
+      stackId: cardUpdated.stackId
+    };
+
+    return this.http.put(`${this.baseUrl}/card/${cardUpdated.cardId}`, newCard);
   }
     
-  // Delete a post
   deleteCard(cardId: number): Observable<any> {
-    return this.apiService.deleteCard(cardId);
+    return this.http.delete(`${this.baseUrl}/card/${cardId}`);
   } 
 }

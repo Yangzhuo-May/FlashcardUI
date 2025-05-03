@@ -1,0 +1,12 @@
+<header class="brand-name question-header">
+    <div class="logo">FLASHCARD</div>
+  <nav>
+    <ul>
+      <li><a (click)="goHome()">Home</a></li>
+      <li *ngIf="!isAuthenticated"><a routerLink="/register">Register</a></li>
+      <li *ngIf="!isAuthenticated"><a routerLink="/login">Login</a></li>
+      <li *ngIf="isAuthenticated"><span>Hi {{ username }}</span></li>
+      <li *ngIf="isAuthenticated"><a (click)="logout()" class="nav-link">Logout</a></li>
+    </ul>
+  </nav>
+</header>

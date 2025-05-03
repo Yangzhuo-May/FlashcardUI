@@ -1,0 +1,22 @@
+<div class="form-container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <label for="email">email：</label>
+        <input 
+        id="email" 
+        type="text" 
+        formControlName="email"
+        required 
+        />
+
+        <label for="password">password：</label>
+        <input 
+        id="password" 
+        type="password" 
+        formControlName="password"
+        autocomplete="off"
+        required 
+        />
+
+        <button type="submit">{{ 'login' }}</button>
+    </form>
+</div>
