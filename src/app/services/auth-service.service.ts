@@ -38,6 +38,7 @@ export class AuthServiceService {
   saveToken(token: string) {
     this.token = token;
     localStorage.setItem(this.tokenKey, token);
+    console.log('Token saved to localStorage:', token);
     this.updateUsername(); 
     this.isAuthenticatedSubject.next(true); 
   }

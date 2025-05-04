@@ -24,7 +24,17 @@
   <!-- Add Stack Form -->
   <div *ngIf="isAddFormVisible" class="form-container">
     <h3>Please enter new Stack name</h3>
-    <input type="text" [(ngModel)]="newStackName" placeholder="Entre Stack name">
+    <div class="mb-3">
+      <label for="newStackName" class="form-label">Stack name</label>
+      <input 
+        type="text" 
+        id="newStackName" 
+        class="form-control" 
+        [(ngModel)]="newStackName"
+        name="newStackName"
+        placeholder="Enter Stack name"
+        required>
+    </div>
     <button (click)="onNewStackClick()">
       Confirm
   </button>

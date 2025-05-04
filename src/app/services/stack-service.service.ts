@@ -16,9 +16,9 @@ export class StackServiceService {
     return this.http.get(`${this.baseUrl}/stack`); 
   }
 
-  createStack(stackName: string): Observable<any> {
+  createStack(name: string): Observable<any> {
     const newStack = {
-      stackName: stackName
+      newStackName : name
     };
 
     return this.http.post<any>(`${this.baseUrl}/stack`, newStack)

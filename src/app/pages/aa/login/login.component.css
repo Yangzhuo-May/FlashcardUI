@@ -1,10 +1,17 @@
-.form-container {
-    margin-top: 200px;
-    margin-left: 200px;
-    display: flex;
-    flex-direction: column;
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  background-color: #ffffff;
+}
 
-    width: 250px; 
+.form-container {
+  
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 450px; 
     background-color: #f9f9f9;
     border: 2px solid #d3d3d3;
     border-radius: 8px;
