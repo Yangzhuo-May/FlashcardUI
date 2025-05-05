@@ -133,6 +133,10 @@ export class CardListComponent implements OnInit {
     this.cardService.getCardsByStack(this.rootStackId).subscribe({
       next: (data) => {
         this.cards = data;
+        this.cardService.setData({
+          stackId: this.rootStackId,
+          cards: data
+        });
       },
       error: (error) => this.handleError(error, 'Failed to get Cards, please try again later.')
     });

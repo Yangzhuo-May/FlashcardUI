@@ -10,9 +10,9 @@
     display: flex;
     justify-content: center; 
     align-items: center;
-    width: 450px; 
+    width: 470px; 
     background-color: #f9f9f9;
-    border: 2px solid #d3d3d3;
+    border: 2px solid #809cba;
     border-radius: 8px;
     padding: 10px;
   }
@@ -23,6 +23,10 @@
     margin-bottom: 10px;
   }
   
+  .button-container {
+    text-align: center;
+  }
+
   button {
     margin-top: 10px;
     padding: 10px 20px;
@@ -43,12 +47,12 @@
   }
   
   button:not([type="button"]) {
-    background-color: #2ecc71;
+    background-color: #2a6fba;
     color: white;
     border: none;
   }
   
   button:not([type="button"]):hover {
-    background-color: #27ae60;
+    background-color: #357ab7;
     border: none;
   }

@@ -10,6 +10,10 @@
     margin-top: 60px;
 }   
 
+.welcome-page-container > div {
+  padding: 20px 20px;
+}
+
 .sidebar {
     grid-area: sidebar;
     display: flex; 
@@ -34,35 +38,49 @@
     justify-content: center; 
     align-items: center; 
     gap: 30px;
-    padding: 0 20px;
 }
        
 .card-set-button {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 12px 48px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 12px;
-    background-color: #2ecc71;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-image 0.2s ease;
+    width: 60%;
   }
   
   .card-set-button:hover {
-    background-color: #27ae60;
+    background-image: linear-gradient(to bottom, #2a6fba, #357ab7);
   }
 
+  .sidebar .card-set-button:nth-child(1) {
+    background-color: hsl(220, 60%, 35%);
+  }
+  
+  .sidebar .card-set-button:nth-child(2) {
+    background-color: hsl(220, 60%, 45%);
+  }
+  
+  .sidebar .card-set-button:nth-child(3) {
+    background-color: hsl(220, 60%, 55%);
+  }
+  
+  .sidebar .card-set-button:nth-child(4) {
+    background-color: hsl(220, 60%, 65%);
+  }
+  
   .stack-name {
     font-size: 32px;
     font-weight: 600;
     color: #ffffff;
-    flex-grow: 1;
   }
 
   .card-header {
-    background-color: #2ecc71; 
+    background-color: #2a6fba; 
     color: white; 
   }
   

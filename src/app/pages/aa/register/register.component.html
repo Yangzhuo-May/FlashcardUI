@@ -1,6 +1,7 @@
 <div class="page-container">
     <div class="form-container">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h3>Create a new account</h3>
             <div class="mb-3">
                 <label for="userName" class="form-label">User name</label>
                 <input  
@@ -47,8 +48,9 @@
                 required 
                 >
             </div>
-    
-            <button type="submit">{{ 'register' }}</button>
+            <div class="button-container">
+                <button type="submit">{{ 'register' }}</button>
+            </div>
         </form>
     </div>
 </div>

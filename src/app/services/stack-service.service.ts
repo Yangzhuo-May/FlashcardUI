@@ -33,8 +33,8 @@ export class StackServiceService {
 
   updateStack(stackName: string, stackId: number): Observable<any> {
     const updatedStack = {
-      stackId: stackId,
-      stackName: stackName
+      StackId: stackId,
+      NewStackName : stackName
     };
 
     return this.http.put<any>(`${this.baseUrl}/stack/${stackId}`, updatedStack)

@@ -1,5 +1,6 @@
 <div class="page-container">
     <div class="form-container">
+        <h3>Login to creat your own flashcard</h3>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
@@ -24,7 +25,11 @@
                 required 
                 >
             </div>
-            <button type="submit">{{ 'login' }}</button>
+            <div class="button-container">
+                <button type="submit">{{ 'login' }}</button>
+            </div>              
         </form>
+        <a>Don't have a account?</a>
+        <a routerLink="/register"> Register now</a>
     </div>
 </div>

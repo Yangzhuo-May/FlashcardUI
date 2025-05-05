@@ -7,7 +7,11 @@ import { BackButtonComponent } from '../../shared/back-button/back-button.compon
 
 @Component({
   selector: 'app-choice-mode',
-  imports: [FormsModule, CommonModule, BackButtonComponent],
+  imports: [
+    FormsModule, 
+    CommonModule, 
+    BackButtonComponent
+  ],
   templateUrl: './choice-mode.component.html',
   styleUrl: './choice-mode.component.css'
 })
