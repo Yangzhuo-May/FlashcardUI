@@ -1,43 +1,29 @@
 .main-container {
     display: flex;
-    flex-direction: row;
-  }
-  
-  .stack-section {
+    flex-direction: column;
+     align-items: center;
     width: 400px; 
     background-color: #f9f9f9;
-    border: 2px solid #d3d3d3;
+    border: 2px solid #809cba;
     border-radius: 8px;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    max-height: 500px;
   }
 
-  .add-stack-button {
-    background-color: #357ab7;
-    color: white;
-    border-radius: 10px;
-    padding: 15px 30px;
-    font-size: 18px;
+  .list-button {
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 60px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-family: 'WinkySans'
-  }
-  
-  .add-stack-button:hover {
+    align-items: center;
+    padding: 12px 48px;
+    margin: 10px 0;
     background-color: #2a6fba;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-image 0.2s ease;
+    width: 80%;
   }
   
-  .add-sign {
-    font-size: 30px;
-    margin-right: 10px;
+  .list-button:hover {
+    background-image: linear-gradient(to bottom, #357ab7, #357ab7);
   }
   
   .stack-list-container {
@@ -45,85 +31,10 @@
     flex-grow: 1;
   }
   
-  .stack-button .material-icons {
-    font-size: 20px;         
-    color: #666;            
-    cursor: pointer;         
-    transition: color 0.2s ease;
-  }
-  
-  .stack-button .material-icons:hover {
-    color: #ffffff;           
-  }
-  
-  .form-container {
-    margin-top: 20px;
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-
-
-    width: 200px; 
-    background-color: #f9f9f9;
-    border: 2px solid #d3d3d3;
-    border-radius: 8px;
-    padding: 10px;
-  }
-  
-  input {
-    padding: 10px;
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  
-  button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:not([type="button"]) {
-    background-color: #2ecc71;
-    color: white;
-    border: none;
-  }
-  
-  button:not([type="button"]):hover {
-    background-color: #27ae60;
-    border: none;
-  }
-  
-  button[type="button"] {
-    background-color: #cc2e38;
-    color: white;
-    border: none;
-  }
-  
-  button[type="button"]:hover {
-    background-color: #ae2727;
-    border: none;
-  }
-
-  .card-set-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 48px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    background-color: #2ecc71;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .card-set-button:hover {
-    background-color: #27ae60;
-  }
-  
   .stack-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 32px;
     font-weight: 600;
     color: white;
@@ -138,7 +49,7 @@
   
   .material-icons {
     font-size: 30px;
-    color: #555;
+    color: #2c2c2c;
     cursor: pointer;
     transition: color 0.2s ease;
   }

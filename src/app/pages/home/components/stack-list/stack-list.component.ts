@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { StackServiceService } from '../../../../services/stack-service.service';
 import { CardServiceService } from '../../../../services/card-service.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-stack-list',
@@ -24,6 +25,11 @@ export class StackListComponent implements OnInit {
   editedStackName: string = '';
   editingStackId: number | null = 0;
 
+  @Output() openAddDialog = new  EventEmitter<void>();
+  @Output() openEditDialog = new EventEmitter<void>();
+
+  private dataSubscription: Subscription | undefined;
+
   constructor(
     private stackService: StackServiceService, 
     private cardService: CardServiceService,
@@ -32,6 +38,11 @@ export class StackListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadStacks();
+
+    this.dataSubscription = this.stackService.stackList$.subscribe(data => {
+      this.stacks = data;
+      console.log('List component received data:', data);
+    });
   }
 
   loadStacks(): void {
@@ -59,38 +70,12 @@ export class StackListComponent implements OnInit {
   } 
 
   onNewStackClick(): void {
-    if (this.newStackName) {
-      this.stackService.createStack(this.newStackName).subscribe({
-        next: (data) => {
-          this.stacks = data.stack;
-        },
-        error: (error) => this.handleError(error, 'Failed to create Stack. Please try again later.')
-      });         
-    } else {
-      alert('Please enter the Stack name.');
-    }
+    this.openAddDialog.emit();
   }
 
-  onEditStackInit(stackId: number): void {
-    this.isAddFormVisible = false;
-    this.isEditFormVisible = true;
-    this.editingStackId = stackId;
-  }
-
-  onEditStackClick(stackName: string, stackId: number | null) {
-    if (stackId == null) {
-      alert('Invalid Stack name or ID.');
-      return;
-    } 
-
-    this.stackService.updateStack(stackName, stackId).subscribe({
-      next: (data) => {
-        this.stacks = data.stack;
-        this.isEditFormVisible = false;
-        this.editedStackName = '';
-      },
-      error: (error) => this.handleError(error, 'Failed to update Stack. Please try again later.')
-    })
+  onEditStackClick(editingStack: any) {
+    this.stackService.setEditingStack(editingStack);
+    this.openEditDialog.emit();
   }
 
   onDeleteStackClick(stack: any): void {

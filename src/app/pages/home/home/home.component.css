@@ -1,22 +1,54 @@
 .container {
     display: grid;
     place-items: center;   
-    height: 80vh;    
-    
-    grid-template-columns: 1fr auto; 
-    grid-template-rows: 1fr;
-    padding: 20px;
-    gap: 20px;
-    box-sizing: border-box;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "Stack-section Stack-section Session Session "
+    "Stack-section Stack-section Session Session "
+    "Stack-section Stack-section Study-mode Study-mode "
+    "Stack-section Stack-section Study-mode Study-mode ";
+    height: 90vh;
+    margin-top: 50px;
+    padding: 10px;
+    position: relative;
   }
   
   .stack-list {
+    grid-area: Stack-section;
+    max-height: 500px;
     overflow-y: auto;
   }
   
   .button-group {
+    grid-area: Study-mode;
     display: flex;
     flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
     gap: 50px;
     align-self: center; 
+    border: 2px solid #27ae60; 
+  }
+
+  .study-session {
+    grid-area: Session;
+    height: 100%;
+    width: 100%;
+    border: 2px solid #27ae60; 
+  }
+
+  .global-overlay-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(200, 200, 200, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
   }

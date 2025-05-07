@@ -1,0 +1,38 @@
+<div *ngIf="isAddFormVisible" class="form-container">
+  <h3>Please enter new Stack name</h3>
+  <div class="mb-3">
+    <input 
+      type="text" 
+      class="form-control"
+      [(ngModel)]="newStackName"
+      required>
+  </div>
+  <div class="button-container">
+    <button (click)="onNewStackClick()">
+      Confirm
+    </button>
+    <button (click)="closeAdd()">
+      Cancel
+    </button>
+  </div>
+</div>
+
+<div *ngIf="isEditFormVisible" class="form-container">
+  <h3>Edit your Stack name</h3>
+  <div class="mb-3">
+    <input 
+      type="text" 
+      class="form-control"
+      [(ngModel)]="editedStackName" 
+      [placeholder]="editingStack?.stackName || ''"
+    >
+  </div>
+  <div class="button-container">
+    <button (click)="onEditStackClick()">
+      Confirm
+    </button>
+    <button (click)="closeEdit()">
+      Cancel
+    </button>
+  </div>
+</div>

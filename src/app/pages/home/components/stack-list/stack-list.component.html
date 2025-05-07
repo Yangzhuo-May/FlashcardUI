@@ -1,57 +1,14 @@
 <div class="main-container">
-  <!-- Stack Section Container (Button + Scrollable List) -->
-  <div class="stack-section">
-    <!-- New Stack Button -->
-    <button class="stack-button add-stack-button" (click)="isAddFormVisible = true">
-      <span class="add-sign">+ Add New Stack</span>
-      <div class="action-icons"></div>  
-    </button>
-  
-    <!-- Stack List -->
-    <div class="stack-list-container">
-      <!-- Stack Button -->
-      <div class="card-set-button" *ngFor="let stack of stacks" (click)="goToCardList(stack.stackId)">          
-        <span class="stack-name">{{ stack.stackName }}</span>
-        
-        <div class="action-icons">
-          <i class="material-icons edit-icon" (click)="onEditStackInit(stack.stackId); $event.stopPropagation()">edit</i>
-          <i class="material-icons delete-icon" (click)="onDeleteStackClick(stack); $event.stopPropagation()">delete</i>
-        </div>
-      </div>
-    </div>
+  <div class="list-button" (click)="onNewStackClick()">
+      <span class="stack-name">+</span>
   </div>
 
-  <!-- Add Stack Form -->
-  <div *ngIf="isAddFormVisible" class="form-container">
-    <h3>Please enter new Stack name</h3>
-    <div class="mb-3">
-      <label for="newStackName" class="form-label">Stack name</label>
-      <input 
-        type="text" 
-        id="newStackName" 
-        class="form-control" 
-        [(ngModel)]="newStackName"
-        name="newStackName"
-        placeholder="Enter Stack name"
-        required>
-    </div>
-    <button (click)="onNewStackClick()">
-      Confirm
-  </button>
-    <button type="button" (click)="isAddFormVisible = false">
-      Cancel
-  </button>
-  </div>
+  <div class="list-button" *ngFor="let stack of stacks" (click)="goToCardList(stack.stackId)">          
+    <span class="stack-name">{{ stack.stackName }}</span>
     
-  <!-- Edit Stack Form -->
-  <div *ngIf="isEditFormVisible" class="form-container">
-    <h3>Please enter new Stack name</h3>
-    <input type="text" [(ngModel)]="editedStackName" placeholder="Entre Stack name">
-    <button (click)="onEditStackClick(editedStackName, editingStackId)">
-      Confirm
-    </button>
-    <button type="button" (click)="isEditFormVisible = false">
-      Cancel
-    </button>
+    <div class="action-icons">
+      <i class="material-icons edit-icon" (click)="onEditStackClick(stack); $event.stopPropagation()">edit</i>
+      <i class="material-icons delete-icon" (click)="onDeleteStackClick(stack); $event.stopPropagation()">delete</i>
+    </div>
   </div>
 </div>

@@ -1,5 +1,25 @@
 <div class="container">
-    <app-stack-list class="stack-list"></app-stack-list>
+    <div class="stack-list">
+        <app-stack-list 
+        (openAddDialog)="openAddForm()"
+        (openEditDialog)="openEditForm()"
+        ></app-stack-list>
+    </div>
+
+    <div *ngIf="isGlobalFormVisible" class="global-overlay-container">
+        <div class="form-container">
+            <app-stack-form
+            (closeAddForm)="onCloseAddForm()"
+            (closeEditForm)="onCloseEditForm()"
+            [isAddFormVisible]="isAddFormVisible"
+            [isEditFormVisible]="isEditFormVisible">
+            ></app-stack-form>
+        </div>
+    </div>
+
+    <div class="study-session">
+
+    </div>
 
     <div class="button-group">
         <app-input-mode-button></app-input-mode-button>

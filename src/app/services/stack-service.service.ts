@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, Observable, BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,6 +11,28 @@ export class StackServiceService {
   private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
+
+  private dataList = new BehaviorSubject<any[]>([]);
+  stackList$ = this.dataList.asObservable();
+
+  private editingStack = new BehaviorSubject<any[]>([]);
+  editingStack$ = this.editingStack.asObservable();
+
+  setEditingStack(data: any[]): void {
+    this.editingStack.next(data);
+    console.log('editingStack is', data)
+  }
+
+  getEditingStack(): Observable<any[]> {
+    return this.editingStack.asObservable(); 
+  }
+  
+  setData(data: any[]): void {
+    this.dataList.next(data);  }
+
+  getData(): Observable<any[]> {
+    return this.dataList.asObservable(); 
+  }
 
   getStacks(): Observable<any> {
     return this.http.get(`${this.baseUrl}/stack`); 

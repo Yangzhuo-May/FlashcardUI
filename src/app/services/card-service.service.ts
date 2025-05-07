@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Card } from '../../models/card';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
