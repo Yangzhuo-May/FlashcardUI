@@ -30,6 +30,7 @@ export class ChoiceModeComponent implements OnInit {
   selectedAnswer: string = '';
   isCorrectAnswer: boolean = false;
   answerChecked: boolean = false;
+  isFlipped = false;
 
   questionState: 'notAnswered' | 'answered' = 'notAnswered';
 
@@ -56,6 +57,7 @@ export class ChoiceModeComponent implements OnInit {
       return;
     }
     
+    this.isFlipped = false;
     this.answerChecked = false;
 
     const currentCardDb = this.cards[this.currentIndex];
@@ -74,6 +76,8 @@ export class ChoiceModeComponent implements OnInit {
     if (this.answerChecked && this.selectedAnswer == this.currentCard.correctAnswer) {
       this.score++;
     } 
+
+    this.isFlipped = true;
   }
 
   displayCorrectAnswer(option: string): string {

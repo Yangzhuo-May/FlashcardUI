@@ -29,7 +29,8 @@ export class InputModeComponent implements OnInit {
   showScore: boolean = false;
   rootStackId: number = 0;
   form!: FormGroup;
-
+  
+  isFlipped = false;
   isCorrectAnswer: boolean | null = null;
   inputTouched: boolean = false;
   currenClass: string = '';
@@ -77,6 +78,10 @@ export class InputModeComponent implements OnInit {
     }
   }
   
+  flipCard() {
+    this.isFlipped = !this.isFlipped;
+  }
+
   displayScore(): void {
     this.showScore = true;
   }
