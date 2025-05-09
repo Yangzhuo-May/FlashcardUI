@@ -20,7 +20,6 @@ export class StackServiceService {
 
   setEditingStack(data: any[]): void {
     this.editingStack.next(data);
-    console.log('editingStack is', data)
   }
 
   getEditingStack(): Observable<any[]> {

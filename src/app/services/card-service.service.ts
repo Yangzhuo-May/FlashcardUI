@@ -13,15 +13,17 @@ export class CardServiceService {
   constructor(private http: HttpClient) {}
 
   private dataList = new BehaviorSubject<{ stackId: number, cards: any[] }>({ stackId: 0, cards: [] });
-  selectedCards$ = this.dataList.asObservable();
+  dataList$ = this.dataList.asObservable();
 
-  setData(data: { stackId: number, cards: any[] }): void {
-    this.dataList.next({ stackId: data.stackId, cards: data.cards });
-    console.log('set data:', data);
+  private editingCard = new BehaviorSubject<any | null>(null);
+  editingCard$ = this.editingCard.asObservable();
+
+  setEditingCard(data: any): void {
+    this.editingCard.next(data);
   }
 
-  getData(): Observable<{ stackId: number, cards: any[] }> {
-    return this.dataList.asObservable(); 
+  setData(data: { stackId: number, cards: any }): void {
+    this.dataList.next({ stackId: data.stackId, cards: data.cards });
   }
 
   getAllCards(): Observable<any> {
@@ -33,25 +35,11 @@ export class CardServiceService {
   }
 
   createCard(card: Card): Observable<any> {
-    const newCard = {
-      question: card.question, 
-      answers: card.answers, 
-      correctAnswer: card.correctAnswer, 
-      stackId: card.stackId
-    };
-
-    return this.http.post(`${this.baseUrl}/card`, newCard);
+    return this.http.post(`${this.baseUrl}/card`, card);
   }
 
   updateCard(cardUpdated: Card): Observable<any> {
-    const newCard = {
-      question: cardUpdated.question, 
-      answers: cardUpdated.answers, 
-      correctAnswer: cardUpdated.correctAnswer, 
-      stackId: cardUpdated.stackId
-    };
-
-    return this.http.put(`${this.baseUrl}/card/${cardUpdated.cardId}`, newCard);
+    return this.http.put(`${this.baseUrl}/card/${cardUpdated.cardId}`, cardUpdated);
   }
     
   deleteCard(cardId: number): Observable<any> {

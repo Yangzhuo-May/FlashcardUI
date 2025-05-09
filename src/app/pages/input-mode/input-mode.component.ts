@@ -27,7 +27,7 @@ export class InputModeComponent implements OnInit {
 
   score: number = 0;
   showScore: boolean = false;
-
+  rootStackId: number = 0;
   form!: FormGroup;
 
   isCorrectAnswer: boolean | null = null;
@@ -49,12 +49,11 @@ export class InputModeComponent implements OnInit {
   }
 
   fetchCards(): void {
-    this.cardService.getData().subscribe({
-      next: (data) => {
-        this.cards = data.cards;
-      },
-      error: (error) => this.handleError(error, 'Failed, try again later.')
-    })
+    this.cardService.dataList$.subscribe(data => {
+      this.cards = data.cards;
+      this.rootStackId = data.stackId;
+      console.log('cardList from service:', data);
+    });
   }
 
   resetFormState(): void {

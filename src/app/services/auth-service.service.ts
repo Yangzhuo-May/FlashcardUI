@@ -57,7 +57,7 @@ export class AuthServiceService {
 
   loginSuccess(token: string) {
     this.saveToken(token);
-    this.router.navigate(['/']); 
+    this.router.navigate(['user']); 
   }
 
   logout() {

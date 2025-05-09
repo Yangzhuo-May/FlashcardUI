@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit{
       return;
     }
 
-    console.log(this.form.value);
     this.authService.login(payload).subscribe({
       next: (res) => {
         this.authService.loginSuccess(res.token);

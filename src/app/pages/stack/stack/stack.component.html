@@ -1,6 +1,21 @@
 <div class="container">
-    <app-card-list></app-card-list>
+    <div class="card-list">
+        <app-card-list
+        (openCardForm)="onOpenCardForm()"
+        ></app-card-list>
+    </div>
 
+    <div *ngIf="isGlobalFormVisible" class="global-overlay-container">
+        <app-card-form
+        (closeCardForm)="onCloseCardForm()"
+        [isCardFormVisible]="isCardFormVisible"
+        ></app-card-form>
+    </div>
+
+    <div class="study-session">
+
+    </div>
+    
     <div class="button-group">
         <app-choice-mode-button></app-choice-mode-button>
         <app-input-mode-button></app-input-mode-button>

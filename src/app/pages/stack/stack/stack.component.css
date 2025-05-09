@@ -1,18 +1,53 @@
 .container {
   display: grid;
   place-items: center;   
-  height: 80vh;    
-  
-  grid-template-columns: 1fr auto; 
-  grid-template-rows: 1fr;
-  padding: 20px;
-  gap: 20px;
-  box-sizing: border-box;
+  height: 90vh;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+  "card-section card-section Session Session "
+  "card-section card-section Session Session "
+  "card-section card-section Study-mode Study-mode "
+  "card-section card-section Study-mode Study-mode ";
+  padding: 10px;
+  margin-top: 50px;
+  position: relative;
 }
   
+.card-list {
+  grid-area: card-section;
+  max-height: 500px;
+  overflow-y: auto;
+}
   .button-group {
+    grid-area: Study-mode;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    justify-items: center;
+    align-items: center;
     align-self: center; 
+    height: 100%;
+    width: 100%;
+    gap: 50px;
+    border: 2px solid #27ae60; 
+  }
+
+  .study-session {
+    grid-area: Session;
+    height: 100%;
+    width: 100%;
+    border: 2px solid #27ae60; 
+  }
+
+  .global-overlay-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(200, 200, 200, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
   }

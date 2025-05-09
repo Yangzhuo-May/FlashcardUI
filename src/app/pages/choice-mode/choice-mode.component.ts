@@ -24,6 +24,7 @@ export class ChoiceModeComponent implements OnInit {
     correctAnswer: ''
   };
 
+  rootStackId: number = 0;
   score: number = 0;
   showScore: boolean = false;
   selectedAnswer: string = '';
@@ -42,12 +43,11 @@ export class ChoiceModeComponent implements OnInit {
   }
 
   fetchCards(): void {
-    this.cardService.getData().subscribe({
-      next: (res) => {
-        this.cards = res.cards;
-      },
-      error: (err) => this.handleError(err, 'Failed, try again later.')
-    })
+    this.cardService.dataList$.subscribe(data => {
+      this.cards = data.cards;
+      this.rootStackId = data.stackId;
+      console.log('cardList from service:', data);
+    });
   }
 
   loadNextCard() {

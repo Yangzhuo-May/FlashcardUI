@@ -58,6 +58,7 @@ export class HomeComponent implements OnInit {
     this.isAddFormVisible = false;
     this.isGlobalFormVisible = false;
   }
+  
   onCloseEditForm() {
     this.isEditFormVisible = false;
     this.isGlobalFormVisible = false;

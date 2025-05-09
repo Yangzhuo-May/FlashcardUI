@@ -7,14 +7,12 @@
     </div>
 
     <div *ngIf="isGlobalFormVisible" class="global-overlay-container">
-        <div class="form-container">
-            <app-stack-form
-            (closeAddForm)="onCloseAddForm()"
-            (closeEditForm)="onCloseEditForm()"
-            [isAddFormVisible]="isAddFormVisible"
-            [isEditFormVisible]="isEditFormVisible">
-            ></app-stack-form>
-        </div>
+        <app-stack-form
+        (closeAddForm)="onCloseAddForm()"
+        (closeEditForm)="onCloseEditForm()"
+        [isAddFormVisible]="isAddFormVisible"
+        [isEditFormVisible]="isEditFormVisible">
+        ></app-stack-form>
     </div>
 
     <div class="study-session">

@@ -1,51 +1,13 @@
 <div class="main-container">
-  <div class="stack-section">
-    <button class="stack-button add-stack-button" (click)="showForm = true">
-      <span class="add-sign">+ Add New Card</span>
-    </button>
-         
-    <div class="stack-list-container">
-      <div class="card-set-button" *ngFor="let card of cards">          
-        <span class="stack-name">{{ card.question }}</span>       
-        <div class="action-icons">
-          <i class="material-icons edit-icon" (click)="onEditCardInit(card); $event.stopPropagation()">edit</i>
-          <i class="material-icons delete-icon" (click)="onClickDeleteCard(card.cardId); $event.stopPropagation()">delete</i>
-        </div>
-      </div>
+  <div class="list-button" (click)="onNewCardClick()">
+      <span class="button-text">+</span>
+  </div>
+
+  <div class="list-button" *ngFor="let card of cards">          
+    <span class="button-text">{{ card.question }}</span>       
+    <div class="action-icons">
+      <i class="material-icons edit-icon" (click)="onEditCardInit(card); $event.stopPropagation()">edit</i>
+      <i class="material-icons delete-icon" (click)="onClickDeleteCard(card.cardId); $event.stopPropagation()">delete</i>
     </div>
   </div>
-  
-  <div *ngIf="showForm" class="form-container">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <label for="question">Question：</label>
-      <input 
-        id="question" 
-        type="text" 
-        formControlName="question"
-        required 
-      />
-    
-      <div formArrayName="answers">
-        <div *ngFor="let answer of answers.controls; let i = index; trackBy: trackByIndex">
-          <label for="answer{{i}}">Answer {{ i + 1 }}：</label>
-          <input 
-            id="answer{{i}}" 
-            type="text" 
-            [formControlName]="i"
-            required 
-          />
-        </div>
-      </div>
-    
-      <label for="correctAnswer">Correct Answer</label>
-      <input 
-        id="correctAnswer" 
-        type="text" 
-        formControlName="correctAnswer" 
-        required 
-      />
-    
-      <button type="submit">{{ editingCard ? 'Save Changes' : 'Add New Card' }}</button>
-      <button type="button" (click)="closeForm()">Cancel</button>
-    </form>
-  </div>
+</div>

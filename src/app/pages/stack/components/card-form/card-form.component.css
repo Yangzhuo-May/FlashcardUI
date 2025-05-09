@@ -1,0 +1,37 @@
+.form-container {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    width: 45vw;
+    height: auto;
+    background-color: #f9f9f9; 
+    border: 2px solid #809cba; 
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 20px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #2a6fba;
+    color: white;
+    border: none;
+  }
+
+  button:hover {
+    background-color: #357ab7;
+    border: none;
+  }

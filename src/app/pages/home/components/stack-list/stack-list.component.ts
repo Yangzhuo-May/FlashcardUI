@@ -38,10 +38,8 @@ export class StackListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadStacks();
-
     this.dataSubscription = this.stackService.stackList$.subscribe(data => {
       this.stacks = data;
-      console.log('List component received data:', data);
     });
   }
 

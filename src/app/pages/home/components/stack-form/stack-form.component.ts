@@ -32,8 +32,6 @@ export class StackFormComponent  implements OnInit  {
   ngOnInit(): void {
     this.dataSubscription = this.stackService.editingStack$.subscribe(data => {
       this.editingStack = data;
-      console.log('The editingStack is:', data);
-
     });
     this.editedStackName = this.editingStack.stackName;
   }
@@ -46,7 +44,7 @@ export class StackFormComponent  implements OnInit  {
     this.closeEditForm.emit();
   }
 
-  onNewStackClick(): void {
+  onAddStackClick(): void {
     if (this.newStackName) {
       this.stackService.createStack(this.newStackName).subscribe({
         next: (data) => {
