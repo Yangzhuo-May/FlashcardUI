@@ -1,0 +1,53 @@
+.score-content {
+  display: flex;
+  margin-top: 15px;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 8px;
+  border: 4px solid #809cba; 
+}
+
+.content-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.correct-answer {
+  animation: pulse 0.5s ease-in-out;
+}
+
+.incorrect-answer {
+  animation: hithere 0.5s ease-in-out;
+}
+
+.score-animate {
+  animation: scaleUp 0.6s ease-in-out forwards;
+}
+
+@keyframes scaleUp {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(1.5); }
+}
+
+@keyframes hithere {
+  20% { transform: rotate(-5deg); }
+  40% { transform: rotate(5deg); }
+  60% { transform: rotate(-3deg); }
+  80% { transform: rotate(3deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes pulse {
+  0%   { transform: scale(0.9); }
+  25%  { transform: scale(1.05); }
+  50%  { transform: scale(0.95); }
+  75%  { transform: scale(1.03); }
+  100% { transform: scale(1.0); }
+}
+

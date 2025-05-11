@@ -1,0 +1,11 @@
+<div class="score-content" 
+    [ngClass]="{
+        'correct-answer': answerChecked && isCorrectAnswer,
+        'incorrect-answer': answerChecked && !isCorrectAnswer,
+        'score-animate': showScore
+    }">
+    <div class="content-inner">
+        <h2>{{ isCorrectAnswer ? 'correct answer' : 'wrong answer' }}</h2>
+        <p>Your score is {{ score }} </p>
+    </div>
+</div>

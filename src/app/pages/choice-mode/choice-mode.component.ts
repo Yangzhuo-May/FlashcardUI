@@ -4,13 +4,16 @@ import { CardDto } from '../../../models/cardDto';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BackButtonComponent } from '../../shared/back-button/back-button.component';
+import { ScoreDisplayComponent } from '../../shared/score-display/score-display.component';
+import { ScoreServiceService } from '../../services/score-service.service';
 
 @Component({
   selector: 'app-choice-mode',
   imports: [
     FormsModule, 
     CommonModule, 
-    BackButtonComponent
+    BackButtonComponent,
+    ScoreDisplayComponent
   ],
   templateUrl: './choice-mode.component.html',
   styleUrl: './choice-mode.component.css'
@@ -24,23 +27,26 @@ export class ChoiceModeComponent implements OnInit {
     correctAnswer: ''
   };
 
-  rootStackId: number = 0;
   score: number = 0;
   showScore: boolean = false;
-  selectedAnswer: string = '';
-  isCorrectAnswer: boolean = false;
-  answerChecked: boolean = false;
-  isFlipped = false;
+  rootStackId: number = 0;
 
-  questionState: 'notAnswered' | 'answered' = 'notAnswered';
+  isFlipped = false;
+  isCorrectAnswer: boolean = false;
+  isEnd: boolean = false;
+  
+  answerChecked: boolean = false;
+  selectedAnswer: string = '';
 
   constructor(
     private cardService: CardServiceService,
+    private scoreService: ScoreServiceService
   ) {}
 
   ngOnInit(): void {
     this.fetchCards();
     this.loadNextCard();
+    this.scoreService.setShowScore(this.showScore);
   }
 
   fetchCards(): void {
@@ -53,12 +59,12 @@ export class ChoiceModeComponent implements OnInit {
 
   loadNextCard() {
     if (this.currentIndex == this.cards.length) {
-      this.displayScore();
+      this.endMode();
       return;
     }
     
-    this.isFlipped = false;
-    this.answerChecked = false;
+    this.scoreService.setAnswerCorrect(false);
+    this.scoreService.setAnswerChecked(false);
 
     const currentCardDb = this.cards[this.currentIndex];
     this.currentIndex++;
@@ -72,27 +78,28 @@ export class ChoiceModeComponent implements OnInit {
   checkAnswer(answer: string) {
     this.selectedAnswer = answer;
     this.answerChecked = true;
+    this.scoreService.setAnswerChecked(this.answerChecked);
 
     if (this.answerChecked && this.selectedAnswer == this.currentCard.correctAnswer) {
       this.score++;
+      this.scoreService.setScore(this.score);
+      this.scoreService.setAnswerCorrect(true);
     } 
-
-    this.isFlipped = true;
+    this.flipCard();
   }
 
-  displayCorrectAnswer(option: string): string {
-    if (!this.answerChecked) {
-      return 'default';  
-    }
-    return option === this.currentCard.correctAnswer ? 'correct' : 'wrong';
-  }
-
-  onCloseScore(): void {
-    this.showScore = false;
-  }
-
-  displayScore(): void {
+  endMode() {
     this.showScore = true;
+    this.isEnd = true;
+    this.scoreService.setShowScore(this.showScore);
+  }
+
+  flipCard() {
+    this.isFlipped = true;
+    setTimeout(() => {
+      this.isFlipped = false;
+      this.loadNextCard();
+    }, 3000);
   }
 
   handleError(error: any, customMessage: string) {

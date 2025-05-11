@@ -2,43 +2,40 @@
   <div class="title">
     <h1>Choice your answer</h1>
   </div>
-
+  
   <div class="score">
-    <div class="score-content">
-      <h2>Study Completed!</h2>
-      <p>Your score is: </p>
-    </div>
+    <app-score-display></app-score-display>
   </div>
 
   <div class="card-slot">
     <div class="flip-card">
       <div class="flip-card-inner" [ngClass]="{'flipped': isFlipped}">
         <div class="flip-card-front card-container">
-          <h1>{{ currentCard?.question }}</h1>
-          <button
-            class="list-button"
-            *ngFor="let answer of currentCard?.answers; let i = index"
-            (click)="checkAnswer(answer)"
-            [ngClass]="displayCorrectAnswer(answer)"
-            [disabled]="answerChecked"
-          >
-            {{ answer }}
-          </button>
+          <div class="flip-card-question" *ngIf="!isEnd">
+            <h1>{{ currentCard?.question }}</h1>
+            <button
+              class="list-button"
+              *ngFor="let answer of currentCard?.answers; let i = index"
+              (click)="checkAnswer(answer)"
+              
+            >
+              {{ answer }}
+            </button>
+          </div>
+          <div *ngIf="isEnd">
+            <h1>Quiz end!</h1>
+          </div>
         </div>
-  
         <div class="flip-card-back card-container">
-          <p>This is the back</p>
+          <h1>The answer is</h1>
+          <h1>{{ currentCard?.correctAnswer }}</h1>       
         </div>
       </div>
     </div>
   </div>
 </div>
 
-  <button (click)="loadNextCard()">
-    NEXT
-  </button>
-
-<div class="button-group">
+<div class="button-group" *ngIf="isEnd">
   <app-back-button></app-back-button>
 </div>
 

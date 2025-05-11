@@ -3,6 +3,10 @@
     <h1>Input your answer</h1>
   </div>
 
+  <div class="score">
+    <app-score-display></app-score-display>
+  </div>
+
   <div class="card-slot">
     <div class="flip-card">
       <div class="flip-card-inner" [ngClass]="{'flipped': isFlipped}">
@@ -15,10 +19,7 @@
                   type="text" 
                   class="form-control"
                   formControlName="userAnswer" 
-                  [ngClass]="{
-                    'correct': isCorrectAnswer === true, 
-                    'incorrect': isCorrectAnswer === false
-                  }"
+                  autocomplete="off" 
                   (keydown.enter)="flipCard()"
                   (focus)="onInputFocus()"
                   placeholder="Please enter your answer"
@@ -31,13 +32,6 @@
           <p>This is the back</p>
         </div>
       </div>
-  </div>
-</div>
-
-<div class="score">
-  <div class="score-content">
-    <h2>Study Completed!</h2>
-    <p>Your score is: </p>
   </div>
 </div>
 

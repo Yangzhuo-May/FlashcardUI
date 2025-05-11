@@ -4,11 +4,14 @@ import { CommonModule } from '@angular/common';
 import { CardDto } from '../../../models/cardDto';
 import { CardServiceService } from '../../services/card-service.service';
 import { BackButtonComponent } from '../../shared/back-button/back-button.component';
+import { ScoreServiceService } from '../../services/score-service.service';
+import { ScoreDisplayComponent } from '../../shared/score-display/score-display.component';
 
 @Component({
   selector: 'app-input-mode',
   imports: [
-    BackButtonComponent, 
+    BackButtonComponent,
+    ScoreDisplayComponent, 
     FormsModule, 
     ReactiveFormsModule, 
     CommonModule
@@ -32,11 +35,12 @@ export class InputModeComponent implements OnInit {
   
   isFlipped = false;
   isCorrectAnswer: boolean | null = null;
+
   inputTouched: boolean = false;
-  currenClass: string = '';
 
   constructor(
     private cardService: CardServiceService,
+    private scoreService: ScoreServiceService,
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({

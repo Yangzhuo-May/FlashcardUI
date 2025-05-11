@@ -61,6 +61,14 @@
   color: black;
 }
 
+.flip-card-question {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
 .flip-card-back {
   background-color: #f9f9f9;
   color: black;
@@ -84,6 +92,7 @@ h1 {
   padding: 12px 48px;
   margin: 10px 0;
   background-color: #2a6fba;
+  border: 4px solid #2a6fba; 
   border-radius: 12px;
   cursor: pointer;
   transition: background-image 0.2s ease;
@@ -96,7 +105,6 @@ h1 {
   
 .score {
   grid-area: score;
-  border: 2px solid #27ae60;
   height: 100%;
   width: 100%;
   padding: 20px;
@@ -115,15 +123,9 @@ button:disabled {
   cursor: not-allowed;
 }  
 
-.score-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .button-group {
   display: grid;
+  margin-top: 60px;
   place-items: center;
   flex-direction: column;
-  gap: 50px;
 }
