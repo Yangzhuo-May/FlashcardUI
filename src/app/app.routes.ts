@@ -7,13 +7,13 @@ import { StackComponent } from './pages/stack/stack/stack.component';
 import { LoginComponent } from './pages/aa/login/login.component';
 import { RegisterComponent } from './pages/aa/register/register.component';
 import { WelcomeComponent } from './pages/welcome/welcome/welcome.component';
+import { QuizModeComponent } from './pages/quiz-mode/quiz-mode.component';
 
 export const routes: Routes = [
     { path: '', component: WelcomeComponent },
     { path: 'user', component: HomeComponent },
     { path: 'cards/:id', component: StackComponent },
-    { path: 'learn/input', component: InputModeComponent },
-    { path: 'learn/choice', component: ChoiceModeComponent },
+    { path: 'quiz', component: QuizModeComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
 ];

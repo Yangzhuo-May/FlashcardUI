@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, Input, OnInit, EventEmitter } from '@angular/core';
 import { CardServiceService } from '../../services/card-service.service';
 import { CardDto } from '../../../models/cardDto';
 import { FormsModule } from '@angular/forms';
@@ -19,87 +19,16 @@ import { ScoreServiceService } from '../../services/score-service.service';
   styleUrl: './choice-mode.component.css'
 })
 export class ChoiceModeComponent implements OnInit {
-  cards: any = [];
-  currentIndex: number = 0;
-  currentCard: CardDto = { 
-    question: '', 
-    answers: ['', '', '', ''],
-    correctAnswer: ''
-  };
-
-  score: number = 0;
-  showScore: boolean = false;
-  rootStackId: number = 0;
-
-  isFlipped = false;
-  isCorrectAnswer: boolean = false;
-  isEnd: boolean = false;
   
-  answerChecked: boolean = false;
-  selectedAnswer: string = '';
-
-  constructor(
-    private cardService: CardServiceService,
-    private scoreService: ScoreServiceService
-  ) {}
+  @Input()  answers: string[] = ['', '', '', ''];
+  @Output() triggerCheck = new EventEmitter<string>();
 
   ngOnInit(): void {
-    this.fetchCards();
-    this.loadNextCard();
-    this.scoreService.setShowScore(this.showScore);
-  }
-
-  fetchCards(): void {
-    this.cardService.dataList$.subscribe(data => {
-      this.cards = data.cards;
-      this.rootStackId = data.stackId;
-      console.log('cardList from service:', data);
-    });
-  }
-
-  loadNextCard() {
-    if (this.currentIndex == this.cards.length) {
-      this.endMode();
-      return;
-    }
     
-    this.scoreService.setAnswerCorrect(false);
-    this.scoreService.setAnswerChecked(false);
-
-    const currentCardDb = this.cards[this.currentIndex];
-    this.currentIndex++;
-    this.currentCard = {
-      question: currentCardDb.question,
-      answers: currentCardDb.answers,
-      correctAnswer: currentCardDb.correctAnswer
-    }
   }
 
-  checkAnswer(answer: string) {
-    this.selectedAnswer = answer;
-    this.answerChecked = true;
-    this.scoreService.setAnswerChecked(this.answerChecked);
-
-    if (this.answerChecked && this.selectedAnswer == this.currentCard.correctAnswer) {
-      this.score++;
-      this.scoreService.setScore(this.score);
-      this.scoreService.setAnswerCorrect(true);
-    } 
-    this.flipCard();
-  }
-
-  endMode() {
-    this.showScore = true;
-    this.isEnd = true;
-    this.scoreService.setShowScore(this.showScore);
-  }
-
-  flipCard() {
-    this.isFlipped = true;
-    setTimeout(() => {
-      this.isFlipped = false;
-      this.loadNextCard();
-    }, 3000);
+  selectAnswer(answer: string) {
+    this.triggerCheck.emit(answer);
   }
 
   handleError(error: any, customMessage: string) {

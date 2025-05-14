@@ -20,6 +20,20 @@ export class ScoreServiceService {
   private score = new BehaviorSubject<number>(0);
   score$ = this.score.asObservable();
 
+  private isChoiceModeOn = new BehaviorSubject<boolean>(false);
+  isChoiceModeOn$ = this.isChoiceModeOn.asObservable();
+
+  private isInputModeOn = new BehaviorSubject<boolean>(false);
+  isInputModeOn$ = this.isInputModeOn.asObservable();
+
+  setInputModeOn(isInputModeOn: boolean): void {
+    this.isInputModeOn.next(isInputModeOn);
+  }
+
+  setChoiceModeOn(isChoiceModeOn: boolean): void {
+    this.isChoiceModeOn.next(isChoiceModeOn);
+  }
+
   setScore(score: number): void {
     console.log('setScore to', score);
     this.score.next(score);

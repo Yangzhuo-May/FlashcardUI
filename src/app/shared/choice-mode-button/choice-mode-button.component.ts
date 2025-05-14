@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ScoreServiceService } from '../../services/score-service.service';
 
 @Component({
   selector: 'app-choice-mode-button',
@@ -9,9 +10,13 @@ import { Router } from '@angular/router';
 })
 export class ChoiceModeButtonComponent {
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private scoreService: ScoreServiceService
+  ) {}
 
   onChoiceModeClick(): void{
-    this.router.navigate(['learn/choice']);
+    this.scoreService.setChoiceModeOn(true);
+    this.router.navigate(['quiz']);
   }
 }

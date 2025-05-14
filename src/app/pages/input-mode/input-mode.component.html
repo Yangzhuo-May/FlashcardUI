@@ -1,42 +1,18 @@
-<div class="main-container">
-  <div class="title">
-    <h1>Input your answer</h1>
-  </div>
-
-  <div class="score">
-    <app-score-display></app-score-display>
-  </div>
-
-  <div class="card-slot">
-    <div class="flip-card">
-      <div class="flip-card-inner" [ngClass]="{'flipped': isFlipped}">
-        <div class="flip-card-front card-container">
-          <h1>{{ currentCard?.question }}</h1>
-          <form [formGroup]="form">
-            <div class="mb-3">
-              <input 
-                  id="userInput" 
-                  type="text" 
-                  class="form-control"
-                  formControlName="userAnswer" 
-                  autocomplete="off" 
-                  (keydown.enter)="flipCard()"
-                  (focus)="onInputFocus()"
-                  placeholder="Please enter your answer"
-              />
-            </div>
-          </form>
-        </div>
-  
-        <div class="flip-card-back card-container">
-          <p>This is the back</p>
-        </div>
-      </div>
-  </div>
-</div>
-
-<div class="button-group">
-  <app-back-button></app-back-button>
+<div class="answers-section">
+  <form [formGroup]="form">
+    <div class="mb-3">
+      <input 
+          id="userInput" 
+          type="text" 
+          class="form-control"
+          formControlName="userAnswer" 
+          autocomplete="off" 
+          (keydown.enter)="inputedAnswer()"
+          (focus)="onInputFocus()"
+          placeholder="Please enter your answer"
+      />
+    </div>
+  </form>
 </div>
 
 
