@@ -46,3 +46,19 @@ nav a {
     color: #007bff; 
     text-decoration: underline; 
   }
+
+ button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #2a6fba;
+    color: white;
+    border: none;
+  }
+  
+  button:hover {
+    background-color: #357ab7;
+    border: none;
+  }

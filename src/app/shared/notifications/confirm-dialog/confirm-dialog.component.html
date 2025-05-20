@@ -1,0 +1,11 @@
+<div class="custom-confirm-dialog" *ngIf="isVisible">
+    <div class="dialog-content">
+        <h2 *ngIf="title">{{ title }}</h2>
+        <p *ngIf="message">{{ message }}</p>
+        <div class="buttons">
+            <button (click)="onCancel()">Cancel</button>
+            <button (click)="onConfirm()">Confirm</button>
+        </div>
+    </div>
+</div>
+<div class="overlay" *ngIf="isVisible"></div>

@@ -1,0 +1,25 @@
+.toast-container {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  z-index: 10000;
+}
+
+.app-toast {
+  background: rgba(42, 111, 186, 0.9);
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.app-toast.show {
+  opacity: 0.95;
+  transform: translateX(0);
+}

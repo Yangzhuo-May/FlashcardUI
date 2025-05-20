@@ -2,7 +2,8 @@
     <div class="logo">FLASHCARD</div>
   <nav>
     <ul>
-      <li><a (click)="goHome()">Home</a></li>
+      <li><a (click)="onHome()">Home</a></li>
+
       <li *ngIf="!isAuthenticated"><a routerLink="/register">Register</a></li>
       <li *ngIf="!isAuthenticated"><a routerLink="/login">Login</a></li>
       <li *ngIf="isAuthenticated"><span>Hi {{ username }}</span></li>
@@ -10,3 +11,10 @@
     </ul>
   </nav>
 </header>
+
+<p-confirmdialog 
+key="positionDialog" 
+[position]="position" 
+acceptButtonStyleClass="button"
+rejectButtonStyleClass="button"
+/>

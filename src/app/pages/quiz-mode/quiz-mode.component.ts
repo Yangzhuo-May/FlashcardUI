@@ -8,7 +8,7 @@ import { BackButtonComponent } from '../../shared/back-button/back-button.compon
 import { ScoreDisplayComponent } from '../../shared/score-display/score-display.component';
 import { ChoiceModeComponent } from '../choice-mode/choice-mode.component';
 import { InputModeComponent } from '../input-mode/input-mode.component';
-
+import { DialogServiceService } from '../../services/dialog-service.service';
 @Component({
   selector: 'app-quiz-mode',
    imports: [
@@ -45,12 +45,14 @@ export class QuizModeComponent implements OnInit {
 
   constructor(
     private cardService: CardServiceService,
-    private scoreService: ScoreServiceService
+    private scoreService: ScoreServiceService,
+    private dialogService: DialogServiceService
   ) {}
 
   ngOnInit(): void {
     this.fetchCards();
     this.loadNextCard();
+    this.dialogService.setIsAnswering(true);
     this.scoreService.setShowScore(this.showScore);
     this.scoreService.isInputModeOn$.subscribe(data => {
       this.isInputModeOn = data;
@@ -100,6 +102,7 @@ export class QuizModeComponent implements OnInit {
   endMode() {
     this.showScore = true;
     this.isEnd = true;
+    this.dialogService.setIsAnswering(false);
     this.scoreService.setShowScore(this.showScore);
     this.scoreService.setChoiceModeOn(false);
     this.scoreService.setInputModeOn(false);

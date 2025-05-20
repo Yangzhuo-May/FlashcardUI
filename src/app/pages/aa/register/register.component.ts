@@ -4,6 +4,7 @@ import {ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators} from
 import { CommonModule } from '@angular/common';
 import { AuthServiceService } from '../../../services/auth-service.service';
 import { registerRequestDto } from '../../../../models/registerRequestDto';
+import { ToastServiceService } from '../../../services/toast-service.service';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private toastService: ToastServiceService
   ){
     this.form = this.fb.group({
       userName: ['', Validators.required],
@@ -51,7 +53,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.form.value);
     this.authService.register(payload).subscribe({
       next: () => {
-
+        this.toastService.showToast('Register succesful!');
       },
       error: (error) => this.handleError(error, 'Register failed.')
     });

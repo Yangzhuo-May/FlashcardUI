@@ -1,0 +1,8 @@
+<div class="toast-container">
+    <div
+    class="app-toast"
+    *ngFor="let toast of toasts"
+    [class.show]="toast.show">
+    {{ toast.message }}
+    </div>
+</div>
