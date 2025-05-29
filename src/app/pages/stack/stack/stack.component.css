@@ -29,14 +29,15 @@
     height: 100%;
     width: 100%;
     gap: 50px;
-    border: 2px solid #27ae60; 
   }
 
   .study-session {
     grid-area: Session;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 100%;
-    border: 2px solid #27ae60; 
   }
 
   .global-overlay-container {

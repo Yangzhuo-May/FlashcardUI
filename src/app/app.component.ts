@@ -22,8 +22,5 @@ export class AppComponent {
   title = 'flashcardUI';
 
   constructor(private toastService: ToastServiceService) { }
-    
-    showToast() {
-      this.toastService.showToast('This is a toast message!');
-    }
+  
 }

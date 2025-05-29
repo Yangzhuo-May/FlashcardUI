@@ -9,7 +9,6 @@
 }
 
 .app-toast {
-  background: rgba(42, 111, 186, 0.9);
   color: #ffffff;
   padding: 12px 24px;
   border-radius: 8px;
@@ -22,4 +21,17 @@
 .app-toast.show {
   opacity: 0.95;
   transform: translateX(0);
+}
+
+.app-toast.success {
+  background-color: rgba(40, 167, 69, 0.9);
+}
+.app-toast.error {
+  background-color: rgba(220, 53, 69, 0.9);
+}
+.app-toast.warning {
+  background-color: rgba(255, 193, 7, 0.9);
+}
+.app-toast.info {
+  background-color: rgba(42, 111, 186, 0.9);
 }

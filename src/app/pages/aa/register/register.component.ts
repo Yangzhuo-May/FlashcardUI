@@ -46,14 +46,14 @@ export class RegisterComponent implements OnInit {
     };
 
     if (this.form.invalid) {  
-      alert('Please fill in all required fields.');
+      this.toastService.showToast('Please fill in all required fields.', 'warning');
       return;
     }
 
     console.log(this.form.value);
     this.authService.register(payload).subscribe({
       next: () => {
-        this.toastService.showToast('Register succesful!');
+        this.toastService.showToast('Register succesful!', 'success');
       },
       error: (error) => this.handleError(error, 'Register failed.')
     });

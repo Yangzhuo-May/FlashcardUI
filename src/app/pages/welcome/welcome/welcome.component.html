@@ -1,6 +1,6 @@
 <div class="welcome-page-container">
     <div class="sidebar">
-      <button class="card-set-button" (click)="goLogin()">          
+      <button class="card-set-button" (click)="goLogin()" style="box-shadow: 0 4px 6px rgba(0,0,0,0.3);">          
         <span class="stack-name">+</span>       
       </button>
       <div class="card-set-button">          
@@ -15,31 +15,70 @@
     </div>
 
     <div class="welcome-text">
-   
-        <h1 style="font-family: 'GreatVibes', cursive; font-size: 80px;">Hello World</h1>
-        <p style="font-family: 'GreatVibes', cursive; font-size: 40px;">Creat your own flashcard and test them them with various mode!</p>
-     
+      <h1>Flashcards<br>just for You</h1>
+      <p style="font-size: 30px;">Create your own flashcards and test yourself with various modes!</p>
     </div>
 
-    <div class="mode-image">
-      <div class="card">
-        <div class="card-header">
-          Input Mode
+
+  <div class="mode-image">
+    <div class="flip-card" (click)="flipInputCard()">
+      <div class="flip-card-inner" [ngClass]="{'flipped': isInputFlipped}">
+
+        <div class="flip-card-front">
+          <div class="card">
+            <div class="card-header">Input Mode</div>
+            <div class="card-body" style="display: flex; justify-content: center; align-items: center; text-align: center;">
+              <h5 class="card-title">Use your keyboard to type and submit your answers.</h5>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-header">
-          Choice Mode
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+        <div class="flip-card-back">
+          <div class="card">
+            <div class="card-header">Input Mode</div>
+            <div class="card-body">
+              <h5 class="card-title">Type Your Answers</h5>
+              <input
+                type="text"
+                class="form-control glow-input"
+                placeholder="Please enter your answer"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="flip-card" (click)="flipChoiseCard()">
+      <div class="flip-card-inner" [ngClass]="{'flipped': isChoiceFlipped}">
+
+        <div class="flip-card-front">
+          <div class="card">
+            <div class="card-header">
+              Choice Mode
+            </div>
+            <div class="card-body" style="display: flex; justify-content: center; align-items: center; text-align: center;">
+              <h5>Use your mouse to choose the correct option.</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card-back">
+          <div class="card">
+            <div class="card-header">Choice Mode</div>
+            <div class="card-body">
+              <h5>Select Your Answers</h5>
+              <div class="ex-container">
+                <div class="rectangle">A</div>
+                <div class="rectangle">B</div>
+                <div class="rectangle">D</div>
+                <div class="rectangle">C</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
 </div>

@@ -23,21 +23,22 @@
   .button-group {
     grid-area: Study-mode;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-items: center;
     align-items: center;
     height: 100%;
     width: 100%;
     gap: 50px;
     align-self: center; 
-    border: 2px solid #27ae60; 
   }
 
   .study-session {
     grid-area: Session;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 100%;
-    border: 2px solid #27ae60; 
   }
 
   .global-overlay-container {

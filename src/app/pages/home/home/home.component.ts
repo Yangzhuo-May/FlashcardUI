@@ -6,6 +6,7 @@ import { InputModeButtonComponent } from '../../../shared/input-mode-button/inpu
 import { StackListComponent } from '../components/stack-list/stack-list.component';
 import { CardServiceService } from '../../../services/card-service.service';
 import { StackFormComponent } from '../components/stack-form/stack-form.component';
+import { DailySummaryComponent } from '../../../shared/daily-summary/daily-summary.component';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ import { StackFormComponent } from '../components/stack-form/stack-form.componen
     ChoiceModeButtonComponent, 
     InputModeButtonComponent,
     StackListComponent,
-    StackFormComponent
+    StackFormComponent,
+    DailySummaryComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

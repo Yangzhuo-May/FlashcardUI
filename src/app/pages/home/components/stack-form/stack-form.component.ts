@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { StackServiceService } from '../../../../services/stack-service.service';
 import { Subscription } from 'rxjs';
+import { ToastServiceService } from '../../../../services/toast-service.service';
 
 @Component({
   selector: 'app-stack-form',
@@ -26,7 +27,8 @@ export class StackFormComponent  implements OnInit  {
   private dataSubscription: Subscription | undefined;
 
   constructor(
-    private stackService: StackServiceService
+    private stackService: StackServiceService,
+    private toastService: ToastServiceService
   ){}
 
   ngOnInit(): void {
@@ -54,7 +56,7 @@ export class StackFormComponent  implements OnInit  {
         error: (error) => this.handleError(error, 'Failed to create Stack. Please try again later.')
       });         
     } else {
-      alert('Please enter the Stack name.');
+      this.toastService.showToast('Please enter the Stack name.', 'warning');
     }
   }
 
@@ -63,7 +65,7 @@ export class StackFormComponent  implements OnInit  {
     const stackId = this.editingStack.stackId;
 
     if (stackId == null) {
-      alert('Invalid Stack name or ID.');
+      this.toastService.showToast('Invalid Stack name or ID.', 'error');
       return;
     } 
 

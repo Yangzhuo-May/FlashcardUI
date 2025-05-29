@@ -1,8 +1,8 @@
 <div class="toast-container">
     <div
-    class="app-toast"
     *ngFor="let toast of toasts"
-    [class.show]="toast.show">
+    class="app-toast"
+    [ngClass]="[toast.type, toast.show ? 'show' : '']">
     {{ toast.message }}
     </div>
 </div>

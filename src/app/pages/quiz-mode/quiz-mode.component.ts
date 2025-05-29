@@ -9,6 +9,7 @@ import { ScoreDisplayComponent } from '../../shared/score-display/score-display.
 import { ChoiceModeComponent } from '../choice-mode/choice-mode.component';
 import { InputModeComponent } from '../input-mode/input-mode.component';
 import { DialogServiceService } from '../../services/dialog-service.service';
+
 @Component({
   selector: 'app-quiz-mode',
    imports: [

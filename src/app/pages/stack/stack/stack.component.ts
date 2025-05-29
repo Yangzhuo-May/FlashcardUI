@@ -5,6 +5,7 @@ import { InputModeButtonComponent } from '../../../shared/input-mode-button/inpu
 import { ChoiceModeButtonComponent } from '../../../shared/choice-mode-button/choice-mode-button.component';
 import { CardFormComponent } from '../components/card-form/card-form.component';
 import { CommonModule } from '@angular/common';
+import { DailySummaryComponent } from '../../../shared/daily-summary/daily-summary.component';
 
 @Component({
   selector: 'app-stack',
@@ -14,7 +15,8 @@ import { CommonModule } from '@angular/common';
     BackButtonComponent,
     InputModeButtonComponent,
     ChoiceModeButtonComponent,
-    CardFormComponent
+    CardFormComponent,
+    DailySummaryComponent
   ],
   templateUrl: './stack.component.html',
   styleUrl: './stack.component.css'

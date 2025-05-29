@@ -1,5 +1,5 @@
 import { Component, OnInit  } from '@angular/core';
-import { ToastServiceService } from '../../services/toast-service.service';
+import { ToastServiceService, ToastType } from '../../services/toast-service.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,16 +11,16 @@ import { CommonModule } from '@angular/common';
   styleUrl: './toast.component.css'
 })
 export class ToastComponent implements OnInit {
-  toasts: { message: string, show: boolean }[] = [];
+  toasts: { message: string, type: ToastType, show: boolean }[] = [];
 
   constructor(private toastService: ToastServiceService) { }
   
   ngOnInit(): void {
-    this.toastService.toastState$.subscribe(({ message, duration }) => {
-      const toast = { message, show: false };
+    this.toastService.toastState$.subscribe(({ message, type, duration }) => {
+      const toast = { message, type, show: false };
       this.toasts.unshift(toast);
-      setTimeout(() => toast.show = true, 10);
 
+      setTimeout(() => toast.show = true, 10);
       setTimeout(() => {
         toast.show = false;
         setTimeout(() => {

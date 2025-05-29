@@ -4,6 +4,7 @@ import {ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators} from
 import { Card } from '../../../../../models/card';
 import { CardServiceService } from '../../../../services/card-service.service';
 import { Subscription, throwError } from 'rxjs';
+import { ToastServiceService } from '../../../../services/toast-service.service';
 
 @Component({
   selector: 'app-card-form',
@@ -26,6 +27,7 @@ export class CardFormComponent implements OnInit {
 
   constructor (
     private cardService: CardServiceService, 
+    private toastService: ToastServiceService,
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
@@ -87,7 +89,7 @@ export class CardFormComponent implements OnInit {
     payload.stackId = this.rootStackId;
 
     if (this.form.invalid) {  
-      alert('Please fill in all required fields.');
+      this.toastService.showToast('Please fill in all required fields.', 'warning');
       return;
     }
 

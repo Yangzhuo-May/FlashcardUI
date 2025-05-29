@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { AuthServiceService } from '../../../services/auth-service.service';
 import { loginRequest } from '../../../../models/loginRequest';
+import { ToastServiceService } from '../../../services/toast-service.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private toastService: ToastServiceService
   ){
     this.form = this.fb.group({
       email: ['', Validators.required],
@@ -42,13 +44,19 @@ export class LoginComponent implements OnInit{
     };
 
     if (this.form.invalid) {  
-      alert('Please fill in all required fields.');
+      this.toastService.showToast('Please fill in all required fields.', 'warning');
       return;
     }
 
     this.authService.login(payload).subscribe({
       next: (res) => {
-        this.authService.loginSuccess(res.token);
+        if (res.isAuthenticated)
+        {
+          this.authService.loginSuccess(res.token);
+        } else 
+        {
+          this.toastService.showToast(res.errorMessage, 'error');
+        }
       },
       error: (error) => this.handleError(error, 'Register failed.')
     });

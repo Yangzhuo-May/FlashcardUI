@@ -7,6 +7,7 @@ import { DialogServiceService } from '../../services/dialog-service.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { ScoreServiceService } from '../../services/score-service.service';
 
 @Component({
   selector: 'app-header',
@@ -35,7 +36,8 @@ export class HeaderComponent  implements OnInit, OnDestroy{
     public authService: AuthServiceService, 
     private router: Router,
     private dialogService: DialogServiceService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private scoreService: ScoreServiceService
   ) {}
 
   ngOnInit(): void {
@@ -73,6 +75,8 @@ export class HeaderComponent  implements OnInit, OnDestroy{
       message: 'You haven\'t completed the quiz yet. Do you really want to go back?',
       accept: () => {
         this.dialogService.setIsAnswering(false);
+        this.scoreService.setInputModeOn(false);
+        this.scoreService.setChoiceModeOn(false);
         this.goHome();
       },
       reject: () => {

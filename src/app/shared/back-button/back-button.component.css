@@ -1,14 +1,15 @@
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #2a6fba;
-    color: white;
-    border: none;
-  }
+.back-icon {
+  color: #2a6fba;       
+  cursor: pointer;       
+  transition: color 0.3s ease;  
 
-  button:hover {
-    background-color: #357ab7;
-    border: none;
-  }
+  font-size: 48px;        
+  font-weight: 400;        
+  font-smooth: antialiased; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.back-icon:hover {
+  color: #145a96;       
+}
