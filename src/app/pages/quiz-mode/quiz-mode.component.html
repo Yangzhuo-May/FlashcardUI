@@ -1,8 +1,9 @@
 <div class="main-container">
   <div class="title">
-    <h1>Choice your answer</h1>
+    <h1>
+      {{ isChoiceModeOn ? 'Choose Your Answer' : 'Enter Your Answer' }}
+    </h1>
   </div>
-  
   <div class="score">
     <app-score-display></app-score-display>
   </div>
@@ -12,20 +13,20 @@
       <div class="flip-card-inner" [ngClass]="{'flipped': isFlipped}">
         <div class="flip-card-front card-container">
           <div class="flip-card-question" *ngIf="!isEnd">
-            <h1>{{ currentCard?.question }}</h1>
+            <h1 class="question">{{ currentCard?.question }}</h1>
             <app-choice-mode
-            class="answers-section"
-            *ngIf="isChoiceModeOn"
-            [answers]="currentCard.answers"
-            (triggerCheck)="checkAnswer($event)"
-          ></app-choice-mode>
+              class="answers-section"
+              *ngIf="isChoiceModeOn"
+              [answers]="currentCard.answers"
+              (triggerCheck)="checkAnswer($event)"
+            ></app-choice-mode>
 
-          <app-input-mode
-            *ngIf="isInputModeOn"
-            class="answers-section"
-            [answers]="currentCard.answers"
-            (triggerCheck)="checkAnswer($event)"
-          ></app-input-mode>
+            <app-input-mode
+              *ngIf="isInputModeOn"
+              class="answers-section"
+              [answers]="currentCard.answers"
+              (triggerCheck)="checkAnswer($event)"
+            ></app-input-mode>
 
           </div>
           <div *ngIf="isEnd">
@@ -41,6 +42,15 @@
   </div>
 </div>
 
+<div *ngIf="showScore" class="lottie-fullscreen">
+  <ng-lottie 
+    class="lottie-container"
+    [options]="options"
+    (animationCreated)="animationCreated($event)"
+  >
+  </ng-lottie >
+</div>
+
 <div class="button-group" *ngIf="isEnd">
-  <app-back-button></app-back-button>
+  <app-back-button class="back-button"></app-back-button>
 </div>

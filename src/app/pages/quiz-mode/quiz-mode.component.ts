@@ -9,6 +9,9 @@ import { ScoreDisplayComponent } from '../../shared/score-display/score-display.
 import { ChoiceModeComponent } from '../choice-mode/choice-mode.component';
 import { InputModeComponent } from '../input-mode/input-mode.component';
 import { DialogServiceService } from '../../services/dialog-service.service';
+import { LottieComponent, AnimationOptions } from 'ngx-lottie';
+import { AnimationItem } from 'lottie-web';
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-quiz-mode',
@@ -18,7 +21,8 @@ import { DialogServiceService } from '../../services/dialog-service.service';
     BackButtonComponent,
     ScoreDisplayComponent,
     ChoiceModeComponent,
-    InputModeComponent
+    InputModeComponent,
+    LottieComponent
   ],
   templateUrl: './quiz-mode.component.html',
   styleUrl: './quiz-mode.component.css'
@@ -44,17 +48,32 @@ export class QuizModeComponent implements OnInit {
 
   answerChecked: boolean = false;
 
+  options: AnimationOptions = {
+    path: '/assets/animation.json',
+    autoplay: true,
+    loop: false  
+  };
+
+  animationCreated(animationItem: AnimationItem): void {
+    animationItem.addEventListener('complete', () => {
+      this.ngZone.run(() => {
+        this.showScore = false;
+      });
+    })
+  }
+
   constructor(
     private cardService: CardServiceService,
     private scoreService: ScoreServiceService,
-    private dialogService: DialogServiceService
+    private dialogService: DialogServiceService,
+    private ngZone: NgZone
   ) {}
 
   ngOnInit(): void {
+    this.scoreService.setScore(0);
     this.fetchCards();
     this.loadNextCard();
     this.dialogService.setIsAnswering(true);
-    this.scoreService.setShowScore(this.showScore);
     this.scoreService.isInputModeOn$.subscribe(data => {
       this.isInputModeOn = data;
     });
@@ -104,7 +123,7 @@ export class QuizModeComponent implements OnInit {
     this.showScore = true;
     this.isEnd = true;
     this.dialogService.setIsAnswering(false);
-    this.scoreService.setShowScore(this.showScore);
+    this.scoreService.setAnswerChecked(false);
     this.scoreService.setChoiceModeOn(false);
     this.scoreService.setInputModeOn(false);
   }

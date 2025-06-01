@@ -35,25 +35,18 @@ export class ScoreServiceService {
   }
 
   setScore(score: number): void {
-    console.log('setScore to', score);
     this.score.next(score);
   }
 
   setAnswerCorrect(isCorrect: boolean): void {
-    console.log('setAnswerCorrect to', isCorrect);
-
     this.isCorrectAnswer.next(isCorrect);
   }
 
   setAnswerChecked(isChecked: boolean) {
-    console.log('setAnswerChecked to', isChecked);
-
-  this.answerChecked.next(isChecked);
+    this.answerChecked.next(isChecked);
   }
 
   setShowScore(show: boolean) {
-    console.log('setShowScore to', show);
-
     this.showScore.next(show);
   }
 }

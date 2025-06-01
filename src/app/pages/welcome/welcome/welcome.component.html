@@ -15,13 +15,14 @@
     </div>
 
     <div class="welcome-text">
-      <h1>Flashcards<br>just for You</h1>
+      <h1>Flashcards</h1>
+      <h2 class="divider">just for you</h2>
       <p style="font-size: 30px;">Create your own flashcards and test yourself with various modes!</p>
     </div>
 
 
   <div class="mode-image">
-    <div class="flip-card" (click)="flipInputCard()">
+    <div class="flip-card" (mouseenter)="flipInputCard()">
       <div class="flip-card-inner" [ngClass]="{'flipped': isInputFlipped}">
 
         <div class="flip-card-front">
@@ -49,7 +50,7 @@
       </div>
     </div>
 
-    <div class="flip-card" (click)="flipChoiseCard()">
+    <div class="flip-card" (mouseenter)="flipChoiseCard()">
       <div class="flip-card-inner" [ngClass]="{'flipped': isChoiceFlipped}">
 
         <div class="flip-card-front">

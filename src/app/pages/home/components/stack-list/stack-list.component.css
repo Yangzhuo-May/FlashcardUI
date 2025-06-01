@@ -1,8 +1,9 @@
 .main-container {
     display: flex;
     flex-direction: column;
-     align-items: center;
-    width: 400px; 
+    align-items: center;
+    width: 100%; 
+    height: 500px;
     background-color: #f9f9f9;
     border: 2px solid #809cba;
     border-radius: 8px;
@@ -14,7 +15,7 @@
     justify-content: center;
     align-items: center;
     padding: 12px 48px;
-    margin: 10px 0;
+    margin: 15px 0;
     background-color: #2a6fba;
     border-radius: 12px;
     cursor: pointer;

@@ -4,14 +4,9 @@
         'incorrect-answer': answerChecked && !isCorrectAnswer
     }">
     <div class="content-inner">
-        <h2>{{ isCorrectAnswer ? 'correct answer' : 'wrong answer' }}</h2>
-        <p>Your score is {{ score }} </p>
-    </div>
-    <div *ngIf="showScore">
-       <ng-lottie 
-        [options]="options"
-        (animationCreated)="animationCreated($event)"
-        style="width: 300px; height: 300px;">
-        </ng-lottie >
+        <div *ngIf="answerChecked" class="answer-feedback">
+            <h2>{{ isCorrectAnswer ? 'correct answer' : 'wrong answer' }}</h2>
+        </div>
+        <p class="score-text">Your score is {{ score }} </p>
     </div>
 </div>

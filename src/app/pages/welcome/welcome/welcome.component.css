@@ -31,9 +31,32 @@
 }
 
 h1 {
-  font-size: 80px !important; 
-  font-weight: 700 !important;
+  font-size: 80px; 
+  font-weight: 700;
   text-align: left;  
+}
+
+h2.divider {
+  position: relative; 
+  display: inline-block; 
+  font-size: 60px; 
+  font-weight: 700;
+  text-align: left; 
+  margin: 5px 0 40px 0; 
+  padding-bottom: 0.05em; 
+  width: 100%;
+  z-index: 10;
+}
+
+h2.divider::after{
+  content: '';
+  position: absolute;
+  bottom: 0.1em; 
+  left: 15%;
+  height: 0.4em;
+  width: 210px;
+  background-color: rgb(200, 200, 200);
+  z-index: -1;
 }
 
 p {
@@ -201,4 +224,69 @@ p {
 
 .rectangle:hover {
   background-color: #357abd; 
+}
+
+
+@media screen and (max-width: 600px) {
+  .welcome-page-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "text"
+      "sidebar"
+      "mode-image";
+    padding: 20px;
+    height: auto;
+    gap: 20px;
+  }
+
+  .welcome-text {
+    align-items: center; 
+    grid-area: text;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 60px;
+    text-align: center;
+  }
+
+  h2.divider {
+    font-size: 40px; 
+    text-align: center; 
+  }
+
+  h2.divider::after{
+    left: 20%;
+    width: 180px;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  .sidebar {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mode-image {
+    grid-area: mode-image;
+    display: flex;
+    flex-direction: column;
+    gap: 150px;
+    margin-bottom: 150px;
+  }
+
+  .flip-card {
+    width: 100%;
+  }
+
+  .card {
+    width: 100%;
+  }
 }
