@@ -1,47 +1,62 @@
 <div *ngIf="isCardFormVisible" class="form-container">
-    <h3>{{ editingCard ? 'Edit your card' : 'Create your card' }}</h3>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-            <label for="question">Question</label>
-              <input 
-                type="text" 
-                class="form-control"
-                id="question" 
-                type="text" 
-                formControlName="question"
-                required 
-              />
+  <h3>{{ editingCard ? 'Edit your card' : 'Create your card' }}</h3>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="question">Question</label>
+      <input 
+        type="text" 
+        class="form-control"
+        id="question" 
+        type="text" 
+        formControlName="question"
+        required 
+      />
 
-
-              <div formArrayName="answers">
-                <div *ngFor="let answer of answers.controls; let i = index; trackBy: trackByIndex">
-                  <label for="answer{{i}}">Answer {{ i + 1 }}</label>
-                  <input 
-                    type="text" 
-                    class="form-control"
-                    id="answer{{i}}" 
-                    [formControlName]="i"
-                    required 
-                  />
-                </div>
-              </div>
-
-              <label for="correctAnswer">Correct Answer</label>
-              <input 
-                type="text"
-                class="form-control"     
-                id="correctAnswer" 
-                formControlName="correctAnswer" 
-                required 
-              />
+      <div formArrayName="answers">
+        <div *ngFor="let answer of answers.controls; let i = index; trackBy: trackByIndex">
+          <label for="answer{{i}}">Answer {{ i + 1 }}</label>
+          <input 
+            type="text" 
+            class="form-control"
+            id="answer{{i}}" 
+            [formControlName]="i"
+            required 
+          />
         </div>
-        <div class="button-container">
-            <button type="submit">
-                Confirm
-            </button>
-            <button type="button" (click)="onCloseCardForm()">
-                Cancel
-            </button>
-        </div>
-    </form>
+      </div>
+
+      <label for="correctAnswer">Correct Answer</label>
+      <input 
+        type="text"
+        class="form-control"     
+        id="correctAnswer" 
+        formControlName="correctAnswer" 
+        required 
+      />
+    </div>
+    <div class="button-container">
+      <button type="submit">
+        Confirm
+      </button>
+      <button type="button" (click)="onCloseCardForm()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="isMultiCardFormVisible" class="multi-card-form-container">
+  <label for="bulkImportTextarea" class="form-label">
+    📥 Bulk Import Flashcards (Format: Question | Correct Answer | Option1,Option2,...)
+  </label>
+  <textarea 
+    class="form-control" 
+    id="bulkImportTextarea" 
+    rows="8" 
+    [(ngModel)]="bulkCard">
+  </textarea>
+  <div class="button-container">
+    <button class="btn btn-primary mt-3" (click)="importBulkCards()">Import</button>
+    <button class="btn btn-primary mt-3" (click)="onCloseMultiCardForm()">Cancel</button>
+  </div>
 </div>

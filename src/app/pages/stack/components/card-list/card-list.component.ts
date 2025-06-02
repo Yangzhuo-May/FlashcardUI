@@ -19,6 +19,7 @@ export class CardListComponent implements OnInit {
   editingCard: any = null;
 
   @Output() openCardForm = new  EventEmitter<void>();
+  @Output() openMultiCardForm = new  EventEmitter<void>();
 
   private dataSubscription: Subscription | undefined;
 
@@ -35,6 +36,10 @@ export class CardListComponent implements OnInit {
 
   onNewCardClick() {
     this.openCardForm.emit();
+  }
+
+  onMultiNewCardClick() {
+    this.openMultiCardForm.emit();
   }
 
   onEditCardInit(cardToEdit: Card) {
