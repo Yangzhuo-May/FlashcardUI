@@ -1,13 +1,14 @@
 <div class="main-container">
-  <div class="list-button" (click)="onNewCardClick()">
-      <span class="button-text">+</span>
+  <div class="list-button add-button" (click)="onNewCardClick()">
+    <span class="button-text center-align">+</span>
+    <i class="material-icons" (click)="onMultiNewCardClick(); $event.stopPropagation()">⋮</i>
   </div>
 
   <div class="list-button" *ngFor="let card of cards">          
-    <span class="button-text">{{ card.question }}</span>       
+    <span class="button-text left-align">{{ card.question }}</span>       
     <div class="action-icons">
-      <i class="material-icons edit-icon" (click)="onEditCardInit(card); $event.stopPropagation()">edit</i>
-      <i class="material-icons delete-icon" (click)="onClickDeleteCard(card.cardId); $event.stopPropagation()">delete</i>
+      <i class="material-icons" (click)="onEditCardInit(card); $event.stopPropagation()">edit</i>
+      <i class="material-icons" (click)="onClickDeleteCard(card.cardId); $event.stopPropagation()">delete</i>
     </div>
   </div>
 </div>

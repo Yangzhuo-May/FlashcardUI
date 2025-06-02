@@ -23,7 +23,8 @@ import { DailySummaryComponent } from '../../../shared/daily-summary/daily-summa
 })
 export class StackComponent implements OnInit {
   isCardFormVisible: boolean = false;
-  isGlobalFormVisible = false;
+  isGlobalFormVisible: boolean = false;
+  isMultiCardFormVisible: boolean = false;
 
   ngOnInit(): void {
     
@@ -36,6 +37,16 @@ export class StackComponent implements OnInit {
 
   onCloseCardForm() {
     this.isCardFormVisible = false;
+    this.isGlobalFormVisible = false;
+  }
+
+  openMultiCardForm() {
+    this.isMultiCardFormVisible = true;
+    this.isGlobalFormVisible = true;
+  }
+
+  onCloseMultiCardForm() {
+    this.isMultiCardFormVisible = false;
     this.isGlobalFormVisible = false;
   }
 }

@@ -37,6 +37,10 @@ export class CardServiceService {
   createCard(card: Card): Observable<any> {
     return this.http.post(`${this.baseUrl}/card`, card);
   }
+  
+  createMultiCard(cards: Card[]): Observable<any> {
+    return this.http.post(`${this.baseUrl}/card/cards`, { cards });
+  }
 
   updateCard(cardUpdated: Card): Observable<any> {
     return this.http.put(`${this.baseUrl}/card/${cardUpdated.cardId}`, cardUpdated);

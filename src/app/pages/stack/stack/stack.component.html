@@ -2,13 +2,16 @@
     <div class="card-list">
         <app-card-list
         (openCardForm)="onOpenCardForm()"
+        (openMultiCardForm)="openMultiCardForm()"
         ></app-card-list>
     </div>
 
     <div *ngIf="isGlobalFormVisible" class="global-overlay-container">
         <app-card-form
         (closeCardForm)="onCloseCardForm()"
+        (closeMultiCardForm)="onCloseMultiCardForm()"
         [isCardFormVisible]="isCardFormVisible"
+        [isMultiCardFormVisible]="isMultiCardFormVisible"
         ></app-card-form>
     </div>
 

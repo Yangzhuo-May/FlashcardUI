@@ -5,12 +5,14 @@ import { Card } from '../../../../../models/card';
 import { CardServiceService } from '../../../../services/card-service.service';
 import { Subscription, throwError } from 'rxjs';
 import { ToastServiceService } from '../../../../services/toast-service.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-card-form',
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   templateUrl: './card-form.component.html',
   styleUrl: './card-form.component.css'
@@ -19,9 +21,12 @@ export class CardFormComponent implements OnInit {
   editingCard: any = null;
   form!: FormGroup;
   rootStackId: number = 0;
+  bulkCard: string = '';
 
   @Input() isCardFormVisible : boolean = false;
+  @Input() isMultiCardFormVisible : boolean = false;
   @Output() closeCardForm = new EventEmitter<void>();
+  @Output() closeMultiCardForm = new EventEmitter<void>();
 
   private dataSubscription: Subscription | undefined;
 
@@ -82,6 +87,10 @@ export class CardFormComponent implements OnInit {
     {
       this.cardService.setEditingCard(null);
     }
+  }
+
+  onCloseMultiCardForm() {
+    this.closeMultiCardForm.emit();
   }
 
   onSubmit() {
@@ -147,6 +156,37 @@ export class CardFormComponent implements OnInit {
       },
       error: (error) => this.handleError(error, 'Failed to fetch cards. Please try again later.')
     });
+  }
+
+  importBulkCards() {
+    if (!this.bulkCard.trim()) {
+      this.toastService.showToast('Please entre the cards that you want to add', 'warning');
+      return;
+    }
+
+    const lines = this.bulkCard.trim().split('\n');
+    const newCards = lines.map(line => {
+      const [question, correctAnswer, options] = line.split('|').map(s => s.trim());
+      return {
+        question: question,
+        correctAnswer: correctAnswer,
+        answers: options ? options.split(',').map(o => o.trim()) : [],
+        stackId: this.rootStackId,
+        cardId: 0
+      };
+    });
+
+    this.cardService.createMultiCard(newCards).subscribe({
+      next: () => {
+        this.closeMultiCardForm.emit();
+        this.refrechCardList();
+      },
+      error: (error) => this.handleError(error, 'Creation failed.')
+    });
+
+    this.bulkCard = '';
+
+    this.toastService.showToast('Import sucesses', 'success');
   }
 
   handleError(error: any, customMessage: string) {

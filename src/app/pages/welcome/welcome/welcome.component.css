@@ -51,7 +51,7 @@ h2.divider {
 h2.divider::after{
   content: '';
   position: absolute;
-  bottom: 0.1em; 
+  bottom: 0.001em; 
   left: 15%;
   height: 0.4em;
   width: 210px;
