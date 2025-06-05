@@ -39,7 +39,7 @@ export class CardServiceService {
   }
   
   createMultiCard(cards: Card[]): Observable<any> {
-    return this.http.post(`${this.baseUrl}/card/cards`, { cards });
+    return this.http.post(`${this.baseUrl}/card/bulk`, { cards });
   }
 
   updateCard(cardUpdated: Card): Observable<any> {
