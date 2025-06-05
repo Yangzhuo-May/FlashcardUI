@@ -1,4 +1,4 @@
 export const environment = {
     production: true, 
-    apiUrl: 'https://flashcardsapi.azurewebsites.net/api'
+    apiUrl: 'https://flashcards-l7il.onrender.com/api'
 };
