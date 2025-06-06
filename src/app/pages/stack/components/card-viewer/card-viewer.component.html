@@ -1,0 +1,26 @@
+<div class="main-container">
+    <div class="slider">
+      <div class="slides" id="slideContainer" #slideContainer>
+        <div class="card-slot" *ngFor="let card of cards; let i = index">
+            <div class="flip-card">
+                <div class="flip-card">
+                    <div class="flip-card-inner" [ngClass]="{'flipped': isFlipped}">
+                        <div class="flip-card-front card-container" (click)="flipCard()">
+                            <div class="flip-card-question">
+                                <h1 class="question">{{ card?.question }}</h1>
+                            </div>
+                        </div>
+                        <div class="flip-card-back flip-card-question">
+                            <h1>The answer is</h1>
+                            <h1>{{ card?.correctAnswer }}</h1>       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="prev-btn" (click)="scrollSlides(-1)">❮</button>
+    <button class="next-btn" (click)="scrollSlides(1)">❯</button>
+    </div>
+</div>

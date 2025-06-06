@@ -3,6 +3,7 @@ import { CardServiceService } from '../../../../services/card-service.service';
 import { CommonModule } from '@angular/common';
 import { Card } from '../../../../../models/card';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-list',
@@ -25,6 +26,7 @@ export class CardListComponent implements OnInit {
 
   constructor(
     private cardService: CardServiceService, 
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -32,6 +34,10 @@ export class CardListComponent implements OnInit {
       this.cards = data.cards;
       this.rootStackId = data.stackId;
     });
+  }
+
+  goToCardViewer(): void {
+    this.router.navigate(['/card-view']);
   }
 
   onNewCardClick() {
