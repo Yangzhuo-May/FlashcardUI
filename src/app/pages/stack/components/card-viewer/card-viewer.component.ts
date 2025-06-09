@@ -31,10 +31,6 @@ export class CardViewerComponent implements OnInit{
     })
   }
 
-  ngAfterViewInit(): void {
-    this.scrollSlides(this.currentCardIndex);
-  }
-
   scrollSlides(direction: number): void {
     console.log('calling');
     const container = document.getElementById("slideContainer");
