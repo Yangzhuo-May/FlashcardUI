@@ -5,7 +5,7 @@
   </div>
 
   <div class="list-button" *ngFor="let card of cards">          
-    <span class="button-text left-align">{{ card.question }}</span>       
+    <span class="button-text left-align" (click)="goToCardViewer();">{{ card.question }}</span>       
     <div class="action-icons">
       <i class="material-icons" (click)="onEditCardInit(card); $event.stopPropagation()">edit</i>
       <i class="material-icons" (click)="onClickDeleteCard(card.cardId); $event.stopPropagation()">delete</i>
