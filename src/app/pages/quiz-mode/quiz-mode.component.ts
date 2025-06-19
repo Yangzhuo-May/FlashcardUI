@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CardDto } from '../../../models/cardDto';
+import { Answer } from '../../../models/answer';
 import { CardServiceService } from '../../services/card-service.service';
 import { ScoreServiceService } from '../../services/score-service.service';
 import { BackButtonComponent } from '../../shared/back-button/back-button.component';
@@ -32,8 +33,12 @@ export class QuizModeComponent implements OnInit {
   currentIndex: number = 0;
   currentCard: CardDto = { 
     question: '', 
-    answers: ['', '', '', ''],
-    correctAnswer: ''
+    answers: [
+      {answerText: '', isCorrect: false}, 
+      {answerText: '', isCorrect: false}, 
+      {answerText: '', isCorrect: false}, 
+      {answerText: '', isCorrect: false}
+    ]
   };
 
   score: number = 0;
@@ -47,6 +52,7 @@ export class QuizModeComponent implements OnInit {
   isInputModeOn: boolean = false;
 
   answerChecked: boolean = false;
+  correctAnswerObject: Answer = {answerText:'', isCorrect: false};
 
   options: AnimationOptions = {
     path: '/assets/animation.json',
@@ -86,6 +92,12 @@ export class QuizModeComponent implements OnInit {
     this.cardService.dataList$.subscribe(data => {
       this.cards = data.cards;
       this.rootStackId = data.stackId;
+
+      if (this.cards.length === 0) {
+        this.endMode();
+        console.log('Data is null');
+        return; 
+      }
     });
   }
 
@@ -103,7 +115,6 @@ export class QuizModeComponent implements OnInit {
     this.currentCard = {
       question: currentCardDb.question,
       answers: currentCardDb.answers,
-      correctAnswer: currentCardDb.correctAnswer
     }
   }
 
@@ -111,7 +122,14 @@ export class QuizModeComponent implements OnInit {
     this.answerChecked = true;
     this.scoreService.setAnswerChecked(this.answerChecked);
 
-    if (this.answerChecked && userAnswer == this.currentCard.correctAnswer) {
+    const foundAnswer = this.currentCard.answers.find(answer => answer.isCorrect === true);
+    if (foundAnswer) {
+      this.correctAnswerObject = foundAnswer;
+    } else {
+      this.correctAnswerObject = {answerText:'', isCorrect: false};
+    }
+    
+    if (this.answerChecked && userAnswer == this.correctAnswerObject?.answerText) {
       this.score++;
       this.scoreService.setScore(this.score);
       this.scoreService.setAnswerCorrect(true);

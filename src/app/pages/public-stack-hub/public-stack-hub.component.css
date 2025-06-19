@@ -1,0 +1,139 @@
+/* src/app/components/stack-gallery/stack-gallery.component.css */
+
+.main-container {
+  padding: 20px;
+  max-width: 1200px; /* 控制整体宽度 */
+  margin: 0 auto; /* 居中显示 */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.loading-indicator, .error-message, .no-stacks-found {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.error-message {
+  color: #d9534f; /* Bootstrap's danger color */
+}
+
+/* --- CSS Grid Layout for the gallery --- */
+.stack-grid {
+  display: grid;
+  /* 定义列：在小屏幕上1列，中等屏幕2列，大屏幕3列 */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px; /* 卡片之间的间距 */
+  padding: 10px;
+}
+
+.stack-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 内容上下对齐 */
+  min-height: 180px; /* 最小高度，避免内容少时卡片过小 */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 1px solid #eee;
+}
+
+.stack-card:hover {
+  transform: translateY(-5px); /* 鼠标悬停时上浮 */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.stack-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #2a6fba; /* 主题蓝色 */
+  white-space: nowrap; /* 不换行 */
+  overflow: hidden; /* 溢出隐藏 */
+  text-overflow: ellipsis; /* 显示省略号 */
+}
+
+.card-count {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.stack-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85em;
+  color: #666;
+  margin-top: auto; /* 推到底部 */
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.public {
+  color: #28a745; /* 绿色 */
+  font-weight: bold;
+}
+
+.private {
+  color: #dc3545; /* 红色 */
+}
+
+.proficient-tag {
+  background-color: #ffc107; /* 黄色 */
+  color: #333;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-left: auto; /* 将 proficient tag 推到右边 */
+}
+
+.favorite-count {
+  color: #ff4500; /* 橙红色 */
+  margin-left: 10px;
+}
+
+.view-button {
+  background-color: #2a6fba;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 15px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.view-button:hover {
+  background-color: #0056b3;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .stack-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 中等屏幕下卡片可以稍微小一些 */
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stack-grid {
+    grid-template-columns: 1fr; /* 在非常小的屏幕上显示单列 */
+    padding: 0 15px;
+  }
+  .main-container {
+    padding: 10px;
+  }
+  .stack-name {
+    font-size: 1.3em;
+  }
+}

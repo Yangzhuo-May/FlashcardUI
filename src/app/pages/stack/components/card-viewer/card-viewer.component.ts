@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 import { CardServiceService } from '../../../../services/card-service.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { Answer } from '../../../../../models/answer';
 
 @Component({
   selector: 'app-card-viewer',
@@ -26,13 +27,18 @@ export class CardViewerComponent implements OnInit{
 
   ngOnInit(): void {
     this.dataSubscription = this.cardService.dataList$.subscribe(data => {
-      this.cards = data.cards;
+    this.cards = data.cards.map(card => {
+      return {
+        ...card,
+        correctAnswer: card.answers.find((a: Answer) => a.isCorrect)?.content || 'No correct answer'
+      };
+    });
       this.rootStackId = data.stackId;
     })
   }
 
+
   scrollSlides(direction: number): void {
-    console.log('calling');
     const container = document.getElementById("slideContainer");
     if (container) {
       const slideWidth = 320;

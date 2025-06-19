@@ -3,7 +3,7 @@
   <nav>
     <ul>
       <li><a (click)="onHome()">Home</a></li>
-
+      <li *ngIf="isAuthenticated"><a routerLink="/hub">Hub</a></li>
       <li *ngIf="!isAuthenticated"><a routerLink="/register">Register</a></li>
       <li *ngIf="!isAuthenticated"><a routerLink="/login">Login</a></li>
       <li *ngIf="isAuthenticated"><span>Hi {{ username }}</span></li>

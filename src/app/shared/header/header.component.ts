@@ -31,7 +31,6 @@ export class HeaderComponent  implements OnInit, OnDestroy{
   isAnswering: boolean = false;
   position = 'center' as const;
 
-
   constructor(
     public authService: AuthServiceService, 
     private router: Router,

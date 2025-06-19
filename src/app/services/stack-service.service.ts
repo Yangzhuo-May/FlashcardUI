@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { stackRequest } from '../../models/stackRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -37,12 +38,12 @@ export class StackServiceService {
     return this.http.get(`${this.baseUrl}/stack`); 
   }
 
-  createStack(name: string): Observable<any> {
-    const newStack = {
-      newStackName : name
-    };
+  getPublicStacks(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/stack/public`); 
+  }
 
-    return this.http.post<any>(`${this.baseUrl}/stack`, newStack)
+  createStack(stackRequest: stackRequest): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/stack`, stackRequest)
     .pipe(
       catchError(error => {
         console.error('Raw error:', error);

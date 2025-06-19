@@ -6,6 +6,8 @@
       class="form-control"
       [(ngModel)]="newStackName"
       required>
+      <input type="checkbox" [(ngModel)]="isPublic">
+      <label>Public</label>
   </div>
   <div class="button-container">
     <button (click)="onAddStackClick()">

@@ -2,7 +2,7 @@
   <button
     class="list-button"
     *ngFor="let answer of answers; let i = index"
-    (click)="selectAnswer(answer)"
+    (click)="selectAnswer(answer.answerText)"
   >
     {{ answer }}
   </button>

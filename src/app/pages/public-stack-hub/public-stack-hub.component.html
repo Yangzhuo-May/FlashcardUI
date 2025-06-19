@@ -1,0 +1,14 @@
+<div class="main-container">
+  <h2>My Flashcard Stacks</h2>
+
+  <div *ngIf="stacks.length > 0" class="stack-grid">
+    <div *ngFor="let stack of stacks" class="stack-card">
+      <h3 class="stack-name">{{ stack.stackName }}</h3>
+      <div class="card-count">{{ stack.cards.length }} Cards</div>
+      <div class="stack-info">
+        <span class="favorite-count">❤️ {{ stack.favoriteCount }}</span>
+      </div>
+      <button class="view-button">View Details</button>
+    </div>
+  </div>
+</div>
