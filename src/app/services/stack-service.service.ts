@@ -42,6 +42,17 @@ export class StackServiceService {
     return this.http.get(`${this.baseUrl}/stack/public`); 
   }
 
+  getStackById(stackId: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/stack/${stackId}`)
+    .pipe(
+      catchError(error => {
+        console.error('Raw error:', error);
+        console.error('Error body:', error.error); 
+        throw error;
+      })
+    )
+  }
+
   createStack(stackRequest: stackRequest): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/stack`, stackRequest)
     .pipe(
@@ -60,6 +71,21 @@ export class StackServiceService {
     };
 
     return this.http.put<any>(`${this.baseUrl}/stack/${stackId}`, updatedStack)
+    .pipe(
+      catchError(error => {
+        console.error('Raw error:', error);
+        console.error('Error body:', error.error); 
+        throw error;
+      })
+    )
+  }
+
+  updateStackPublicStatus(isPublic: boolean, stackId: number): Observable<any> {
+    const updatedPublicStatus = {
+      isPublic: isPublic
+    };
+
+    return this.http.patch<any>(`${this.baseUrl}/stack/${stackId}`, updatedPublicStatus)
     .pipe(
       catchError(error => {
         console.error('Raw error:', error);

@@ -1,14 +1,17 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CardServiceService } from '../../../../services/card-service.service';
+import { StackServiceService } from '../../../../services/stack-service.service';
 import { CommonModule } from '@angular/common';
 import { Card } from '../../../../../models/card';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-card-list',
   imports: [
     CommonModule, 
+    FormsModule
   ],
   templateUrl: './card-list.component.html',
   styleUrl: './card-list.component.css'
@@ -16,6 +19,8 @@ import { Router } from '@angular/router';
 export class CardListComponent implements OnInit {
   cards: any[] = [];
   rootStackId: number = 0;
+  isStackPublic:boolean = false;
+  stack:any = null;
 
   editingCard: any = null;
 
@@ -26,6 +31,7 @@ export class CardListComponent implements OnInit {
 
   constructor(
     private cardService: CardServiceService, 
+    private stackService: StackServiceService,
     private router: Router
   ){}
 
@@ -33,6 +39,13 @@ export class CardListComponent implements OnInit {
     this.dataSubscription = this.cardService.dataList$.subscribe(data => {
       this.cards = data.cards;
       this.rootStackId = data.stackId;
+    });
+    this.stackService.getStackById(this.rootStackId).subscribe({
+      next: (data) => {
+        this.stack = data.stack;
+        this.isStackPublic = data.stack.isPublic;
+      },
+      error: (error) => this.handleError(error, 'Creation failed.')
     });
   }
 
@@ -68,6 +81,15 @@ export class CardListComponent implements OnInit {
       },
       error: (error) => this.handleError(error, 'Failed to delete, please try again later.')
     })
+  }
+
+  updatePublicStatus() {
+    this.stackService.updateStackPublicStatus(this.isStackPublic, this.rootStackId).subscribe({
+      next: (data) => {
+        this.isStackPublic = data.stack.isPublic;
+      },
+      error: (error) => this.handleError(error, 'Creation failed.')
+    });
   }
 
   handleError(error: any, customMessage: string) {

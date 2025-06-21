@@ -1,4 +1,18 @@
 <div class="main-container">
+  <div class="switch-container" *ngIf="stack">
+    <label class="switch">
+      <input 
+      type="checkbox"
+      id="isStackPublicSwitch"
+      [(ngModel)]="isStackPublic"
+      (change)="updatePublicStatus()"
+      >
+      <span class="slider round"></span>
+    </label>
+    <span class="label-text">Public</span>
+    <span class="label-text title">{{ stack.newStackName }}</span>
+  </div>
+
   <div class="list-button add-button" (click)="onNewCardClick()">
     <span class="button-text center-align">+</span>
     <i class="material-icons" (click)="onMultiNewCardClick(); $event.stopPropagation()">⋮</i>
