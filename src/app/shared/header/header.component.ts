@@ -8,6 +8,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ScoreServiceService } from '../../services/score-service.service';
+import { UserInfo } from '../../../models/userInfo';
 
 @Component({
   selector: 'app-header',
@@ -25,6 +26,7 @@ import { ScoreServiceService } from '../../services/score-service.service';
 export class HeaderComponent  implements OnInit, OnDestroy{
 
   isAuthenticated: boolean = false;
+  userInfo: UserInfo | null = null;
   username: string | null = null;
   userSubscription: Subscription | undefined;
   isAuthenticatedSubscription: Subscription | undefined;
@@ -45,8 +47,10 @@ export class HeaderComponent  implements OnInit, OnDestroy{
       this.isAnswering = data
     );
     this.userSubscription = this.authService.user$.subscribe(
-      (username) => (this.username = username)
-    );
+      (userInfo) => {
+        this.userInfo = userInfo,
+        this.username = userInfo?.userName ?? null;
+      });
     this.isAuthenticatedSubscription = this.authService.isAuthenticated$.subscribe(
       (isAuthenticated) => (this.isAuthenticated = isAuthenticated)
     );

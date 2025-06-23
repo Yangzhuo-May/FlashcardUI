@@ -5,6 +5,7 @@ import { loginRequest } from '../../models/loginRequest';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router'; // 导入 Router
+import { UserInfo } from '../../models/userInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -12,43 +13,48 @@ import { Router } from '@angular/router'; // 导入 Router
 export class AuthServiceService {
   private baseUrl = environment.apiUrl;
   private tokenKey = 'authToken';
-  private userSubject = new BehaviorSubject<string | null>(this.getUsernameFromToken()); // 保存用户名
+  private userSubject = new BehaviorSubject<UserInfo | null>(null);
   public user$ = this.userSubject.asObservable();
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isAuthenticated()); // 新的 Subject
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isAuthenticated()); 
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   token: string | null = localStorage.getItem(this.tokenKey);
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  private getUsernameFromToken(): string | null {
+  private getPayloadFromToken(): any | null {
     const token = this.getToken();
     if (token) {
       try {
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        return payload.sub || payload.email || null; 
+        return JSON.parse(atob(token.split('.')[1]));
       } catch (error) {
         console.error('Error decoding token:', error);
-        return null;
       }
     }
     return null;
+  }
+
+  updateUserInfoFromToken(): void {
+    const payload = this.getPayloadFromToken();
+    if (payload) {
+      this.userSubject.next({
+        userId: payload.UserId,
+        userName: payload.sub || payload.email
+      });
+    } else {
+      this.userSubject.next(null);
+    }
   }
 
   saveToken(token: string) {
     this.token = token;
     localStorage.setItem(this.tokenKey, token);
     console.log('Token saved to localStorage:', token);
-    this.updateUsername(); 
     this.isAuthenticatedSubject.next(true); 
   }
 
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
-  }
-
-  getUsername(): string | null {
-    return this.userSubject.getValue();
   }
 
   isAuthenticated(): boolean {
@@ -66,10 +72,6 @@ export class AuthServiceService {
     this.userSubject.next(null);
     this.isAuthenticatedSubject.next(false); 
     this.router.navigate(['/login']); 
-  }
-
-  private updateUsername() {
-    this.userSubject.next(this.getUsernameFromToken());
   }
 
   register(registerRequest: registerRequestDto): Observable <any> {
