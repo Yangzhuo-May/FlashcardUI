@@ -21,13 +21,6 @@ export class FavoriteStackServiceService {
   }
 
   removeFavoriteStack(request:FavoriteStackRequest): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/favorite`)
-    .pipe(
-      catchError(error => {
-        console.error('Raw errr:', error);
-        console.error('Error body:', error.error); 
-        throw error;
-      })
-    )
+    return this.http.delete(`${this.baseUrl}/favorite/${request.userId}/${request.stackId}`);
   }
 }

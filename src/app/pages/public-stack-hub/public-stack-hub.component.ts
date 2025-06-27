@@ -5,6 +5,8 @@ import { AuthServiceService } from '../../services/auth-service.service';
 import { FavoriteStackServiceService } from '../../services/favorite-stack-service.service';
 import { Subscription } from 'rxjs';
 import { UserInfo } from '../../../models/userInfo';
+import { CardServiceService } from '../../services/card-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-public-stack-hub',
@@ -26,7 +28,9 @@ export class PublicStackHubComponent implements OnInit {
   constructor(
     private stackService : StackServiceService,
     private favoriteStackService: FavoriteStackServiceService,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private cardService: CardServiceService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -83,6 +87,19 @@ export class PublicStackHubComponent implements OnInit {
         error: (error) => this.handleError(error, 'Failed to load Stack data. Please try again later.')
       })
     }
+  }
+
+  onDtailsViewer(stackId: number) {
+    this.cardService.getCardsByStack(stackId).subscribe({
+      next: (data) => {
+        this.cardService.setData({
+          stackId: stackId,
+          cards: data
+        });
+      },
+      error: (error) => this.handleError(error, 'Creation failed.')
+    });
+    this.router.navigate(['/card-view']);
   }
   
   handleError(error: any, customMessage: string) {

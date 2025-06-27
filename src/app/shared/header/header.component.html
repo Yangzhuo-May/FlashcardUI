@@ -6,7 +6,7 @@
       <li *ngIf="isAuthenticated"><a routerLink="/hub">Hub</a></li>
       <li *ngIf="!isAuthenticated"><a routerLink="/register">Register</a></li>
       <li *ngIf="!isAuthenticated"><a routerLink="/login">Login</a></li>
-      <li *ngIf="isAuthenticated"><span>Hi {{ username }}</span></li>
+      <li *ngIf="isAuthenticated" #triggerRef (click)="toggleMenu($event, triggerRef)"><span>Hi {{ username }}</span></li>
       <li *ngIf="isAuthenticated"><a (click)="logout()" class="nav-link">Logout</a></li>
     </ul>
   </nav>
@@ -18,3 +18,63 @@
   acceptButtonStyleClass="button"
   rejectButtonStyleClass="button"
 />
+
+<div class="pop-menu" *ngIf="menuVisible" #menuRef [ngStyle]="{'top.px': menuTop, 'left.px': menuLeft}">
+  <ul>
+    <li (click)="openSidebar()">Favorites</li>
+  </ul>
+</div>
+
+<div 
+  class="overlay" 
+  *ngIf="sidebarVisible"
+  (click)="closeSidebar()">
+</div>
+
+<!-- sidebar -->
+<div 
+  class="sidebar" 
+  [class.show]="sidebarVisible"
+  (click)="$event.stopPropagation()">
+  <h4 class="p-3">Favorites</h4>
+  <ul class="list-group list-group-flush">
+    <li>
+      <div *ngIf="favoriteStacks && favoriteStacks.length > 0">
+        <div *ngFor="let stack of favoriteStacks" class="stack-card">
+          <h3 class="stack-name">{{ stack.stackName }}</h3>
+          <div class="card-count">{{ stack.cards.length }} Cards</div>
+  
+          <div class="stack-info">
+            <div class="container">
+              <label>
+                <input 
+                type="checkbox" 
+                id="checkbox"
+                [checked]="stackIds.includes(stack.stackId)"
+                (change)="onFavoriteChange($event, stack.stackId)"
+                >
+                <div class="heart">
+                  <svg viewBox="0 0 544.582 544.582">
+                    <path d="M448.069,57.839c-72.675-23.562-150.781,15.759-175.721,87.898C247.41,73.522,169.303,34.277,96.628,57.839
+                            C23.111,81.784-16.975,160.885,6.894,234.708c22.95,70.38,235.773,258.876,263.006,258.876
+                            c27.234,0,244.801-188.267,267.751-258.876C561.595,160.732,521.509,81.631,448.069,57.839z">
+                    </path>
+                  </svg>
+                  <svg viewBox="0 0 544.582 544.582">
+                    <path d="M448.069,57.839c-72.675-23.562-150.781,15.759-175.721,87.898C247.41,73.522,169.303,34.277,96.628,57.839
+                            C23.111,81.784-16.975,160.885,6.894,234.708c22.95,70.38,235.773,258.876,263.006,258.876
+                            c27.234,0,244.801-188.267,267.751-258.876C561.595,160.732,521.509,81.631,448.069,57.839z">
+                    </path>
+                  </svg>
+                </div>
+              </label>
+            </div>
+            <span class="favorite-count">{{ stack.favoriteCount }}</span>
+          </div>
+          <button class="view-button" (click)="onDtailsViewer(stack.stackId)">View Details</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <button class="btn btn-secondary m-3" (click)="closeSidebar()">Close</button>
+</div>
