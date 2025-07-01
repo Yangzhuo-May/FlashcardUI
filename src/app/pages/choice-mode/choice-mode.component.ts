@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { BackButtonComponent } from '../../shared/back-button/back-button.component';
 import { ScoreDisplayComponent } from '../../shared/score-display/score-display.component';
 import { ScoreServiceService } from '../../services/score-service.service';
+import { Answer } from '../../../models/answer';
 
 @Component({
   selector: 'app-choice-mode',
@@ -20,7 +21,12 @@ import { ScoreServiceService } from '../../services/score-service.service';
 })
 export class ChoiceModeComponent implements OnInit {
   
-  @Input()  answers: string[] = ['', '', '', ''];
+  @Input() answers: Answer[] = [
+      {answerText: '', isCorrect: false}, 
+      {answerText: '', isCorrect: false}, 
+      {answerText: '', isCorrect: false}, 
+      {answerText: '', isCorrect: false}
+    ];
   @Output() triggerCheck = new EventEmitter<string>();
 
   ngOnInit(): void {

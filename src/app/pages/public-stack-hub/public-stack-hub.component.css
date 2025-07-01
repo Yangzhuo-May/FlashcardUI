@@ -1,0 +1,210 @@
+.main-container {
+  padding: 20px;
+  height: 100vh;
+  max-width: 1200px; 
+  margin: 0 auto; 
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.loading-indicator, .error-message, .no-stacks-found {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.error-message {
+  color: #d9534f; 
+}
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px; 
+  padding: 10px;
+}
+
+.stack-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  min-height: 180px; 
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 1px solid #eee;
+}
+
+.stack-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.stack-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #2a6fba; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+.card-count {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.stack-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 0.85em;
+  color: #666;
+  margin-top: auto; 
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.public {
+  color: #28a745; 
+  font-weight: bold;
+}
+
+.private {
+  color: #dc3545; 
+}
+
+.proficient-tag {
+  background-color: #ffc107; 
+  color: #333;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-left: auto; 
+}
+
+.favorite-count {
+  color: #ff4500; 
+  margin-left: 0px;
+}
+
+.view-button {
+  background-color: #2a6fba;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 15px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.view-button:hover {
+  background-color: #0056b3;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 10%;
+}
+
+body {
+  height: 30vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #ccd6ff;
+}
+
+.label {
+  height: 100px;
+  width: 100px;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  background: #e6e6e6;
+  box-shadow: 0px 0px 40px #18181816, 0px 0px 40px #3d3d3d10;
+  cursor: pointer;
+}
+
+.heart {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  fill: rgb(168, 170, 181);
+  transition: all 500ms ease-in-out;
+}
+
+svg:nth-child(2) {
+  position: absolute;
+  z-index: 2;
+}
+
+input {
+  display: none;
+}
+
+input:checked + .heart svg {
+  fill: red;
+}
+
+input:checked + .heart svg:nth-child(2) {
+  filter: opacity(1);
+  animation: heart 0.3s linear forwards;
+}
+
+@keyframes heart {
+  to {
+    transform: scale(1.4);
+    filter: opacity(0);
+    fill: red;
+  }
+}
+
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .stack-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 中等屏幕下卡片可以稍微小一些 */
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stack-grid {
+    grid-template-columns: 1fr; /* 在非常小的屏幕上显示单列 */
+    padding: 0 15px;
+  }
+  .main-container {
+    padding: 10px;
+  }
+  .stack-name {
+    font-size: 1.3em;
+  }
+}

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { StackServiceService } from '../../../../services/stack-service.service';
 import { Subscription } from 'rxjs';
 import { ToastServiceService } from '../../../../services/toast-service.service';
+import { stackRequest } from '../../../../../models/stackRequest';
 
 @Component({
   selector: 'app-stack-form',
@@ -18,6 +19,7 @@ export class StackFormComponent  implements OnInit  {
   editedStackName: string = '';
   newStackName: string = '';
   editingStack: any = null;
+  isPublic: boolean = false;
 
   @Input() isAddFormVisible: boolean = false;
   @Input() isEditFormVisible: boolean = false;
@@ -48,7 +50,12 @@ export class StackFormComponent  implements OnInit  {
 
   onAddStackClick(): void {
     if (this.newStackName) {
-      this.stackService.createStack(this.newStackName).subscribe({
+      const request: stackRequest = {
+        newStackName: this.newStackName,
+        isPublic: this.isPublic
+      };
+
+      this.stackService.createStack(request).subscribe({
         next: (data) => {
           this.stackService.setData(data.stack); 
           this.closeAddForm.emit();

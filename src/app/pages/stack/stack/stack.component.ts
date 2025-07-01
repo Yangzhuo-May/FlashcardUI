@@ -6,6 +6,7 @@ import { ChoiceModeButtonComponent } from '../../../shared/choice-mode-button/ch
 import { CardFormComponent } from '../components/card-form/card-form.component';
 import { CommonModule } from '@angular/common';
 import { DailySummaryComponent } from '../../../shared/daily-summary/daily-summary.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stack',

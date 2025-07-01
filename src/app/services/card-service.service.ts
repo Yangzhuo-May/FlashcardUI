@@ -19,6 +19,7 @@ export class CardServiceService {
   editingCard$ = this.editingCard.asObservable();
 
   setEditingCard(data: any): void {
+    console.log('in service card is', data);
     this.editingCard.next(data);
   }
 

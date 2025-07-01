@@ -1,0 +1,39 @@
+<div class="main-container">
+  <h2>My Flashcard Stacks</h2>
+
+  <div *ngIf="stacks.length > 0" class="stack-grid">
+    <div *ngFor="let stack of stacks" class="stack-card">
+      <h3 class="stack-name">{{ stack.stackName }}</h3>
+      <div class="card-count">{{ stack.cards.length }} Cards</div>
+
+      <div class="stack-info">
+        <div class="container">
+          <label>
+            <input 
+            type="checkbox" 
+            id="checkbox"
+            [checked]="stackIds.includes(stack.stackId)"
+            (change)="onFavoriteChange($event, stack.stackId)"
+            >
+            <div class="heart">
+              <svg viewBox="0 0 544.582 544.582">
+                <path d="M448.069,57.839c-72.675-23.562-150.781,15.759-175.721,87.898C247.41,73.522,169.303,34.277,96.628,57.839
+                        C23.111,81.784-16.975,160.885,6.894,234.708c22.95,70.38,235.773,258.876,263.006,258.876
+                        c27.234,0,244.801-188.267,267.751-258.876C561.595,160.732,521.509,81.631,448.069,57.839z">
+                </path>
+              </svg>
+              <svg viewBox="0 0 544.582 544.582">
+                <path d="M448.069,57.839c-72.675-23.562-150.781,15.759-175.721,87.898C247.41,73.522,169.303,34.277,96.628,57.839
+                        C23.111,81.784-16.975,160.885,6.894,234.708c22.95,70.38,235.773,258.876,263.006,258.876
+                        c27.234,0,244.801-188.267,267.751-258.876C561.595,160.732,521.509,81.631,448.069,57.839z">
+                </path>
+              </svg>
+            </div>
+          </label>
+        </div>
+        <span class="favorite-count">{{ stack.favoriteCount }}</span>
+      </div>
+      <button class="view-button" (click)="onDtailsViewer(stack.stackId)">View Details</button>
+    </div>
+  </div>
+</div>

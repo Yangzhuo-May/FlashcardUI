@@ -6,6 +6,7 @@ import { CardServiceService } from '../../services/card-service.service';
 import { BackButtonComponent } from '../../shared/back-button/back-button.component';
 import { ScoreServiceService } from '../../services/score-service.service';
 import { ScoreDisplayComponent } from '../../shared/score-display/score-display.component';
+import { Answer } from '../../../models/answer';
 
 @Component({
   selector: 'app-input-mode',
@@ -21,7 +22,12 @@ import { ScoreDisplayComponent } from '../../shared/score-display/score-display.
 })
 export class InputModeComponent implements OnInit {
 
-  @Input()  answers: string[] = ['', '', '', ''];
+  @Input() answers: Answer[] = [
+    {answerText: '', isCorrect: false}, 
+    {answerText: '', isCorrect: false}, 
+    {answerText: '', isCorrect: false}, 
+    {answerText: '', isCorrect: false}
+  ];
   @Output() triggerCheck = new EventEmitter<string>();
   form!: FormGroup;
   

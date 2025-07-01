@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit{
         if (res.isAuthenticated)
         {
           this.authService.loginSuccess(res.token);
+          this.authService.updateUserInfoFromToken();
         } else 
         {
           this.toastService.showToast(res.errorMessage, 'error');
